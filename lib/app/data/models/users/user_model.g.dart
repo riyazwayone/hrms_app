@@ -17,8 +17,8 @@ _UserModel _$UserModelFromJson(Map<String, dynamic> json) => _UserModel(
       shiftTiming: json['shiftTiming'] as String? ?? "",
       designation: json['designation'] as String? ?? "",
       shopName: json['shopName'] as String? ?? "",
-      shopId: json['shopId'] as String? ?? "",
-      shopOwnerId: json['shopOwnerId'] as String? ?? "",
+      shopId: (json['shopId'] as num?)?.toInt() ?? 0,
+      shopOwnerId: (json['shopOwnerId'] as num?)?.toInt() ?? 0,
       planId: (json['planId'] as num?)?.toInt(),
       plan: json['plan'] == null
           ? null

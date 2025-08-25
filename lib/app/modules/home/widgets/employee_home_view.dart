@@ -5,7 +5,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:hrms_app/app/core/utils/extensions/widget_rols.dart';
+import 'package:hrms_app/app/data/services/user_service.dart';
 import 'package:hrms_app/app/modules/home/home_controller.dart';
+import 'package:hrms_app/service_locator.dart';
 import 'package:logger/logger.dart';
 
 import '../../../core/constants/app_constants.dart';
@@ -28,7 +30,7 @@ class EmployeeHomeView extends StatelessWidget {
         physics: const AlwaysScrollableScrollPhysics(),
         slivers: [
           // Sticky header with profile section
-          SliverAppBarWidget(user: controller.user.value!),
+          SliverAppBarWidget(user: sl<UserService>().getCurrentUserSync()!),
 
           // Main content
           SliverPadding(
@@ -40,7 +42,7 @@ class EmployeeHomeView extends StatelessWidget {
                 _buildWelcomeCardContent(),
 
                 const SizedBox(height: 24),
-
+                // Text(sl<UserService>().getCurrentUserSync()!.toString()),
                 // Quick actions
                 _buildQuickActions().forHr(),
 
@@ -350,11 +352,18 @@ class EmployeeHomeView extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-        ...List.generate(controller.homeModel.value.employees.length, (index) {
-          final employee = controller.homeModel.value.employees[index];
-          Logger().d('Employee: ${employee.profileImage}');
-          return EmployeeItem(employee: employee);
-        }),
+        Obx(
+          () => Column(
+            children: List.generate(
+                controller.employeeListController.employees.length, (index) {
+              final employee =
+                  controller.employeeListController.employees[index];
+              Logger().d('Employee: ${employee.profileImage}');
+              return EmployeeItem(employee: employee);
+            }),
+          ),
+        )
+
         // Employee list item
       ],
     );

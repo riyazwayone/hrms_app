@@ -7,6 +7,7 @@ import 'package:hrms_app/app/data/repositories/__employee.dart';
 import 'package:hrms_app/app/data/repositories/__home.dart';
 import 'package:hrms_app/app/data/services/user_service.dart';
 import 'package:hrms_app/app/modules/attendance/attendance_controller.dart';
+import 'package:hrms_app/app/modules/employee/all_employees/all_employees_controller.dart';
 import 'package:hrms_app/app/routes/app_routes.dart';
 import 'package:hrms_app/service_locator.dart';
 import 'package:logger/logger.dart';
@@ -31,6 +32,10 @@ class HomeController extends GetxController {
   final attendanceController = Get.isRegistered<AttendanceController>()
       ? Get.find<AttendanceController>()
       : Get.put(AttendanceController());
+
+  final employeeListController = Get.isRegistered<AllEmployeesController>()
+      ? Get.find<AllEmployeesController>()
+      : Get.put(AllEmployeesController());
 
   // Navigation items for different roles
   final List<Map<String, dynamic>> hrNavItems = [
@@ -184,6 +189,7 @@ class HomeController extends GetxController {
   Future<void> refreshData() async {
     await _loadUserData();
     await loadAllEmployees();
+    await employeeListController.fetchAllEmployees();
   }
 
   // load ALL employees
@@ -216,6 +222,12 @@ class HomeController extends GetxController {
 
   // Navigate to create employee screen
   void navigateToCreateEmployee() {
-    Get.toNamed(AppRoutes.addEmployee);
+    Get.toNamed(AppRoutes.addEmployee)?.then((value) {
+      if (value == true) {
+        // If an employee was created, refresh the employee list
+        loadAllEmployees();
+        loadEmployeeList();
+      }
+    });
   }
 }

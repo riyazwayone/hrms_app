@@ -23,12 +23,14 @@ abstract class AppRoutes {
 
   // Employee routes
   static const String shopEmployees = '/shop-employees';
-  static const String allEmployees = '/all-employees'; // Main app routes
+  static const String allEmployees = '/all-employees';
+  static const String employeeProfile = '/employee-profile'; // Main app routes
   static const String home = '/home';
   static const String dashboard = '/dashboard';
 
   // Profile routes
   static const String profile = '/profile';
+  static const String profileDetails = '/profile-details';
   static const String editProfile = '/edit-profile';
   static const String settings = '/settings';
 

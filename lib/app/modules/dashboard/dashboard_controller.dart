@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hrms_app/app/core/utils/extensions/widget_rols.dart';
+
+import '../../core/constants/app_constants.dart';
 
 class DashboardController extends GetxController {
   static DashboardController get to => Get.find();
@@ -19,6 +22,18 @@ class DashboardController extends GetxController {
   final RxInt usedLeaves = 8.obs;
   final RxDouble monthlyHours = 160.0.obs;
   final RxDouble workedHours = 120.5.obs;
+
+  final navbarLabels = ['Home', 'Shops'.forAdmin(), 'Tasks', 'Team', 'Profile']
+      .whereType<String>()
+      .toList();
+
+  final navbarIcons = [
+    AppConstants.homeSvg,
+    AppConstants.shopSvg.forAdmin(),
+    AppConstants.taskSvg,
+    AppConstants.usersSvg,
+    AppConstants.userSvg
+  ].whereType<String>().toList();
 
   void changeTabIndex(int index) {
     selectedIndex.value = index;

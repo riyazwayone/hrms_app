@@ -29,6 +29,8 @@ class HomeRepositoryImpl extends GetConnect implements HomeRepository {
       throw Exception('Failed to login');
     }
 
+    _logger.f(response.body);
+
     final body = jsonDecode(response.bodyString ?? '{}');
 
     return HomeModel.fromJson(body['data']);

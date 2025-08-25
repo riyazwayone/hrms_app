@@ -28,4 +28,5 @@ class Api {
   static const fetchEmployeesApi = '$baseUrl/fetch_employees.php';
   static const fetchTasksApi = '$baseUrl/fetch_task.php';
   static const createTaskApi = '$baseUrl/create_task.php';
+  static const updateTaskStatusApi = '$baseUrl/update_task_status.php';
 }

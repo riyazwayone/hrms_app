@@ -5,6 +5,7 @@ import 'package:hrms_app/app/core/theme/app_colors.dart';
 import 'package:hrms_app/service_locator.dart';
 
 import '../../../core/constants/app_constants.dart';
+import '../../../routes/app_routes.dart';
 import '../home_controller.dart';
 
 class AdminHomeView extends StatelessWidget {
@@ -286,7 +287,9 @@ class AdminHomeView extends StatelessWidget {
         child: Column(
           children: [
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.toNamed(AppRoutes.addEmployee);
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF9CB70B),
                 minimumSize: Size(double.infinity, 50),

@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:hrms_app/app/core/constants/api.dart';
 import 'package:hrms_app/app/data/models/employee/employee_model.dart';
 import 'package:hrms_app/service_locator.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
 
 import '../services/user_service.dart';
@@ -10,16 +11,26 @@ class EmployeeRepository extends GetConnect {
   final _logger = Logger();
 
   // Create employee
-  Future<bool> createEmployee(EmployeeModel employee) async {
+  Future<bool> createEmployee(EmployeeModel employee, XFile? imageFile) async {
     try {
       // In a real app, this would be an API call
       // For demo purposes, we'll just return true
       _logger.d('Creating employee: ${employee.toJson()}');
 
-      // Simulate API call delay
-      await Future.delayed(const Duration(seconds: 1));
+      final headers = await sl<UserService>().getHeaders();
+      final updatedHeader = headers..remove('Content-Type');
+      final formData = FormData({
+        ...employee.toJson(),
+        if (imageFile != null)
+          'profile_image':
+              MultipartFile(imageFile.path, filename: imageFile.name),
+      });
+      _logger.f("Updated headers: $updatedHeader");
+      final response = await post(Api.createEmployeeApi, formData,
+          headers: headers, contentType: 'multipart/form-data');
+      _logger.f(response.body);
 
-      return true;
+      return response.statusCode == 200;
     } catch (e, stack) {
       _logger.e('Error creating employee: $e');
       _logger.e('Stack trace: $stack');

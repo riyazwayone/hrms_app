@@ -4,8 +4,76 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:hrms_app/app/core/constants/app_constants.dart';
 import 'package:hrms_app/app/core/theme/app_colors.dart';
-import 'package:hrms_app/app/core/utils/extensions/widget_rols.dart';
 import 'package:hrms_app/app/global_widgets/custom_button.dart';
+import 'package:hrms_app/app/global_widgets/custom_text_field.dart';
+import 'package:hrms_app/app/modules/employee/create_employee_controller.dart';
+
+class CreateEmployeeView extends GetView<CreateEmployeeController> {
+  const CreateEmployeeView({Key? key}) : super(key: key);
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Obx(() => Center(
+          child: Container(
+            width: 120,
+            height: 120,
+            decoration: BoxDecoration(
+              color: Colors.grey[200],
+              shape: BoxShape.circle,
+              image: controller.selectedImage.value != null
+                  ? DecorationImage(
+                      image: FileImage(controller.selectedImage.value!),
+                      fit: BoxFit.cover,
+                    )
+                  : null,
+              border: Border.all(color: Colors.grey.shade300, width: 2),
+            ),
+            child: controller.selectedImage.value == null
+                ? Icon(
+                    Icons.person,
+                    size: 60,
+                    color: Colors.grey[400],
+                  )
+                : null,
+          ),
+        )),
+        const SizedBox(height: 16),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton.icon(
+              onPressed: () => controller.pickImageFromGallery(),
+              icon: const Icon(Icons.image),
+              label: const Text('Gallery'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.primary,
+                foregroundColor: Colors.white,
+              ),
+            ),
+            const SizedBox(width: 16),
+            ElevatedButton.icon(
+              onPressed: () => controller.takePhoto(),
+              icon: const Icon(Icons.camera_alt),
+              label: const Text('Camera'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.secondary,
+                foregroundColor: Colors.white,
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSectionTitle(String title) {
+    return Text(
+      title,
+      style: const TextStyle(
+        fontSize: 18.0,
+        fontWeight: FontWeight.bold,
+      ),
+    );
+  }ort 'package:hrms_app/app/global_widgets/custom_button.dart';
 import 'package:hrms_app/app/global_widgets/custom_text_field.dart';
 import 'package:hrms_app/app/modules/employee/create_employee_controller.dart';
 
@@ -17,10 +85,13 @@ class CreateEmployeeView extends GetView<CreateEmployeeController> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Create New Employee'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Get.back(),
+        ),
       ),
       body: Obx(() {
         return Stack(
-          fit: StackFit.expand, // Ensure Stack fills the available space
           children: [
             _buildForm(context),
             if (controller.isLoading.value)
@@ -46,7 +117,7 @@ class CreateEmployeeView extends GetView<CreateEmployeeController> {
           children: [
             _buildSectionTitle('Employee Information'),
             const SizedBox(height: 16.0),
-
+            
             // Profile Image Upload
             _buildProfileImagePicker(),
             const SizedBox(height: 24.0),
@@ -120,20 +191,6 @@ class CreateEmployeeView extends GetView<CreateEmployeeController> {
                 return null;
               },
             ),
-            const SizedBox(height: 24.0),
-            // Designation dropdown
-            if (controller.shopListController != null)
-              _buildDropdown(
-                    label: 'Select Shop',
-                    value: controller.selectedShop.value,
-                    items: controller.shopListController?.shops
-                            .map((e) => e.shopName ?? '')
-                            .where((name) => name.isNotEmpty)
-                            .toList() ??
-                        [],
-                    onChanged: controller.updateShop,
-                  ).forAdmin() ??
-                  SizedBox.shrink(),
             const SizedBox(height: 24.0),
 
             _buildSectionTitle('Job Information'),
@@ -258,86 +315,14 @@ class CreateEmployeeView extends GetView<CreateEmployeeController> {
             const SizedBox(height: 32.0),
 
             // Submit button
-            SizedBox(
-              width: double.infinity,
-              child: CustomButton(
-                text: 'Create Employee',
-                onPressed: controller.submitForm,
-              ),
+            CustomButton(
+              text: 'Create Employee',
+              onPressed: controller.submitForm,
             ),
             const SizedBox(height: 24.0),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildProfileImagePicker() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Obx(() => Center(
-              child: Container(
-                width: 120,
-                height: 120,
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  shape: BoxShape.circle,
-                  image: controller.selectedImage.value != null
-                      ? DecorationImage(
-                          image: FileImage(controller.selectedImage.value!),
-                          fit: BoxFit.cover,
-                        )
-                      : null,
-                  border: Border.all(color: Colors.grey.shade300, width: 2),
-                ),
-                child: controller.selectedImage.value == null
-                    ? Icon(
-                        Icons.person,
-                        size: 60,
-                        color: Colors.grey[400],
-                      )
-                    : null,
-              ),
-            )),
-        const SizedBox(height: 16),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: 140,
-              child: ElevatedButton.icon(
-                onPressed: () => controller.pickImageFromGallery(),
-                icon: const Icon(
-                  Icons.image,
-                  color: Colors.white,
-                ),
-                label: const Text('Gallery'),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primary,
-                  foregroundColor: Colors.white,
-                ),
-              ),
-            ),
-            const SizedBox(width: 16),
-            SizedBox(
-              width: 140,
-              child: ElevatedButton.icon(
-                onPressed: () => controller.takePhoto(),
-                icon: const Icon(
-                  Icons.camera_alt,
-                  color: Colors.white,
-                ),
-                label: const Text('Camera'),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.secondary,
-                  foregroundColor: Colors.white,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ],
     );
   }
 
@@ -370,7 +355,6 @@ class CreateEmployeeView extends GetView<CreateEmployeeController> {
         const SizedBox(height: 8),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          width: double.infinity, // Ensure full width
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             border: Border.all(color: Colors.grey.shade300),
@@ -378,7 +362,7 @@ class CreateEmployeeView extends GetView<CreateEmployeeController> {
           child: DropdownButtonHideUnderline(
             child: DropdownButton<String>(
               value: value,
-              isExpanded: true, // Use full width
+              isExpanded: true,
               items: items.map((String item) {
                 return DropdownMenuItem<String>(
                   value: item,

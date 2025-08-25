@@ -1,3 +1,4 @@
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:hrms_app/app/core/utils/enums.dart';
 import 'package:hrms_app/app/data/repositories/__task.dart';
@@ -116,6 +117,7 @@ class TaskListController extends GetxController {
           );
           tasks[index] = updatedTask;
           update();
+          Fluttertoast.showToast(msg: "Task marked as completed");
         }
       } else {
         throw Exception('Failed to update task status');
@@ -123,6 +125,9 @@ class TaskListController extends GetxController {
     } catch (e) {
       _logger.e('Error updating task status: $e');
       hasError.value = true;
+      Fluttertoast.showToast(
+          msg: "Failed to update task status. Please try again.");
+
       errorMessage.value = 'Failed to update task status. Please try again.';
     } finally {
       isLoading.value = false;

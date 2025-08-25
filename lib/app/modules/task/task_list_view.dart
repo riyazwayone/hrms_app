@@ -267,8 +267,8 @@ class TaskListView extends GetView<TaskListController> {
                 parentBoxDisableBackgroundColor: Colors.grey,
                 squareSlidingButtonBackgroundColor: AppColors.buttonPrimary,
                 isEnable: task.status.toLowerCase() != 'completed',
-                onSlideActionCompleted: () {
-                  Fluttertoast.showToast(msg: "Task marked as completed");
+                onSlideActionCompleted: () async {
+                  await controller.updateTaskStatus(task.id, 'completed');
                 },
                 onSlideActionCanceled: () {
                   print("Sliding action cancelled");

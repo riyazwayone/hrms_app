@@ -15,11 +15,16 @@ class AllEmployeesController extends GetxController {
   // Observable variables
   final RxBool isLoading = false.obs;
   final RxList<EmployeeModel> employees = <EmployeeModel>[].obs;
+  final RxList<EmployeeModel> filteredEmployees = <EmployeeModel>[].obs;
+  final RxString searchQuery = ''.obs;
 
   @override
   void onInit() {
     super.onInit();
     fetchAllEmployees();
+
+    // Listen for changes in the search query
+    ever(searchQuery, (_) => filterEmployees());
   }
 
   // Fetch all employees across all shops
@@ -33,9 +38,10 @@ class AllEmployeesController extends GetxController {
           await employeeRepository.getEmployees(
         shopId: (user != null && user.role == UserRole.admin)
             ? null
-            : (user?.shopId != null ? int.tryParse(user!.shopId) : null),
+            : (user?.shopId != null ? (user!.shopId) : null),
       );
       employees.assignAll(fetchedEmployees);
+      filteredEmployees.assignAll(fetchedEmployees);
     } catch (e, stack) {
       Logger().d('Error fetching employees: $e');
       Logger().e('Stack trace: $stack');
@@ -45,17 +51,44 @@ class AllEmployeesController extends GetxController {
     }
   }
 
-  // Filter employees by shop
-  void filterByShop(int shopId) {
-    if (shopId == 0) {
-      // Show all employees
-      fetchAllEmployees();
+  // Filter employees based on search query
+  void filterEmployees() {
+    final query = searchQuery.value.toLowerCase();
+    if (query.isEmpty) {
+      filteredEmployees.assignAll(employees);
     } else {
-      // Filter by shop ID
-      final allEmployees = employeeRepository.getEmployees();
-      allEmployees.then((list) {
-        employees.assignAll(list.where((e) => e.shopId == shopId));
-      });
+      filteredEmployees.assignAll(
+        employees.where((employee) =>
+            employee.employeeName.toLowerCase().contains(query) ||
+            employee.email.toLowerCase().contains(query) ||
+            employee.phoneNumber.toLowerCase().contains(query) ||
+            employee.designation.toLowerCase().contains(query) ||
+            employee.shopName.toLowerCase().contains(query)),
+      );
+    }
+  }
+
+  // Filter employees by shop
+  void filterByShop(int shopId) async {
+    try {
+      isLoading.value = true;
+      if (shopId == 0) {
+        // Show all employees
+        await fetchAllEmployees();
+      } else {
+        // Filter by shop ID
+        final user = sl<UserService>().getCurrentUserSync();
+        final List<EmployeeModel> allEmployees =
+            await employeeRepository.getEmployees(
+          shopId: (user != null && user.role == UserRole.admin) ? null : null,
+        );
+        employees.assignAll(allEmployees.where((e) => e.shopId == shopId));
+        filteredEmployees.assignAll(employees);
+      }
+    } catch (e) {
+      Logger().e('Error filtering by shop: $e');
+    } finally {
+      isLoading.value = false;
     }
   }
 
@@ -66,6 +99,7 @@ class AllEmployeesController extends GetxController {
 
       // Remove employee from local list
       employees.removeWhere((e) => e.id == employeeId);
+      filteredEmployees.removeWhere((e) => e.id == employeeId);
 
       Get.snackbar(
         'Success',
@@ -81,5 +115,10 @@ class AllEmployeesController extends GetxController {
     } finally {
       isLoading.value = false;
     }
+  }
+
+  // Navigate to employee profile
+  void viewEmployeeProfile(EmployeeModel employee) {
+    Get.toNamed('/employee-profile', arguments: employee);
   }
 }

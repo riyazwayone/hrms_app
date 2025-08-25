@@ -55,6 +55,7 @@ dependencies:
   logger: ^2.6.0
   stream_duration: ^4.2.2
   sliding_action_button: ^0.0.7
+  image_picker: ^1.2.0
 
 
 dev_dependencies:

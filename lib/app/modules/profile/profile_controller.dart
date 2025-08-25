@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:hrms_app/app/data/services/user_service.dart';
 import 'package:hrms_app/app/routes/app_routes.dart';
 import 'package:hrms_app/service_locator.dart';
+import 'package:logger/logger.dart';
 
 class ProfileController extends GetxController {
   static ProfileController get to => Get.find();
@@ -46,6 +47,11 @@ class ProfileController extends GetxController {
     Get.toNamed('/edit-profile');
   }
 
+  // Navigate to profile details
+  void viewProfileDetails() {
+    Get.toNamed('/profile-details');
+  }
+
   // Navigate to settings
   void goToSettings() {
     Get.toNamed('/settings');
@@ -58,6 +64,7 @@ class ProfileController extends GetxController {
       middleText: 'Are you sure you want to logout?',
       onConfirm: () {
         Get.back();
+        Logger().f(sl<UserService>().getRole());
         sl<UserService>().clearUser();
         Get.offAllNamed(AppRoutes.login);
       },

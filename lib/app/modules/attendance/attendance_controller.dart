@@ -210,7 +210,7 @@ class AttendanceController extends GetxController {
       // _logger.d('Check-in response: $response');
 
       isCheckedIn.value = true;
-      currentStatus.value = 'Checked In';
+      currentStatus.value = 'Punch out';
       statusMessage.value = 'Check-in successful';
 
       // Get the check-in time from the response

@@ -59,10 +59,10 @@ class SubscriptionDetailsController extends GetxController {
         'amount': selectedPlan.value!.price,
         'currency': 'EUR',
       };
-
+      _logger.f(selectedPlan.toJson());
       // Call repository to subscribe to plan
       final success = await sl<SubscriptionRepository>().subscribeToPlan(
-        selectedPlan.value!.id!,
+        selectedPlan.value?.id ?? 1,
         paymentDetails,
       );
 

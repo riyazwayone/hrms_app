@@ -25,7 +25,7 @@ class DashboardNavScreen extends GetView<DashboardController> {
           HomeView(),
           ShopListView().forAdmin(),
           TaskListView(),
-          const AllEmployeesView(),
+          AllEmployeesView(),
           ProfileView()
         ].whereType<Widget>().toList(),
       ),
@@ -48,19 +48,14 @@ class DashboardNavScreen extends GetView<DashboardController> {
       ),
       child: Obx(() => Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _buildNavItem('Home', AppConstants.homeSvg,
-                  controller.selectedIndex.value == 0, 0),
-              _buildNavItem('Shops', AppConstants.shopSvg,
-                      controller.selectedIndex.value == 1, 1)
-                  .forAdmin(),
-              _buildNavItem('Tasks', AppConstants.taskSvg,
-                  controller.selectedIndex.value == 2, 2),
-              _buildNavItem('Team', AppConstants.usersSvg,
-                  controller.selectedIndex.value == 3, 3),
-              _buildNavItem('Profile', AppConstants.userSvg,
-                  controller.selectedIndex.value == 4, 4),
-            ].whereType<Widget>().toList(),
+            children: List.generate(controller.navbarLabels.length, (index) {
+              return _buildNavItem(
+                controller.navbarLabels[index],
+                controller.navbarIcons[index],
+                controller.selectedIndex.value == index,
+                index,
+              );
+            }),
           )),
     );
   }

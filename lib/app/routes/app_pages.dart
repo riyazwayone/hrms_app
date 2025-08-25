@@ -10,6 +10,8 @@ import '../modules/home/home_binding.dart';
 import '../modules/home/home_view.dart';
 import '../modules/profile/profile_binding.dart';
 import '../modules/profile/profile_view.dart';
+import '../modules/profile/profile details/profile_details_binding.dart';
+import '../modules/profile/profile details/profile_details_view.dart';
 import '../modules/dashboard/dashboard_binding.dart';
 import '../modules/dashboard/dashboard_view.dart';
 import '../modules/leave/leave_binding.dart';
@@ -32,6 +34,8 @@ import '../modules/shop/create_shop_binding.dart';
 import '../modules/shop/create_shop_view.dart';
 import '../modules/shop/shop_list/shop_list_binding.dart';
 import '../modules/shop/shop_list/shop_list_view.dart';
+import '../modules/employee/employee_profile/employee_profile_binding.dart';
+import '../modules/employee/employee_profile/employee_profile_view.dart';
 
 class AppPages {
   static const initial = AppRoutes.onboarding;
@@ -68,6 +72,11 @@ class AppPages {
       name: AppRoutes.profile,
       page: () => const ProfileView(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.profileDetails,
+      page: () => const ProfileDetailsView(),
+      binding: ProfileDetailsBinding(),
     ),
 
     // Dashboard
@@ -131,6 +140,12 @@ class AppPages {
     GetPage(
       name: AppRoutes.allEmployees,
       page: () => const AllEmployeesView(),
+      binding: AllEmployeesBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.employeeProfile,
+      page: () => EmployeeProfileView(employee: Get.arguments),
+      binding: EmployeeProfileBinding(),
     ),
 
     // Task

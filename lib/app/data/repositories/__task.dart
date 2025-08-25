@@ -66,76 +66,17 @@ class TaskRepository extends GetConnect {
     }
   }
 
-  // Get mock data for demonstration
-  List<TaskModel> getMockTasksData() {
-    return [
-      // Today's tasks
-      TaskModel(
-        id: 1,
-        taskTitle: 'Full Stack Developer Interview',
-        taskDescription:
-            'It is a long established fact that a reader will be distracted by the readable content.',
-        deadline: DateTime.now().add(const Duration(hours: 3)),
-        priority: 'High',
-        employeeId: 1,
-        employeeName: 'John Doe',
-        status: 'pending',
-        assignedBy: 'Tech Head',
-        createdAt: DateTime.now(),
-      ),
-
-      // Yesterday's tasks
-      TaskModel(
-        id: 2,
-        taskTitle: 'New Candidate Document Verification',
-        taskDescription:
-            'It is a long established fact that a reader will be distracted by the readable content.',
-        deadline: DateTime.now().subtract(const Duration(days: 1)),
-        priority: 'Medium',
-        employeeId: 2,
-        employeeName: 'Jane Smith',
-        status: 'completed',
-        assignedBy: 'HR Manager',
-        createdAt: DateTime.now().subtract(const Duration(days: 1)),
-      ),
-
-      // Tasks from earlier
-      TaskModel(
-        id: 3,
-        taskTitle: 'Update Employee Database',
-        taskDescription:
-            'Review and update all employee records in the system.',
-        deadline: DateTime.now().subtract(const Duration(days: 3)),
-        priority: 'Low',
-        employeeId: 1,
-        employeeName: 'John Doe',
-        status: 'completed',
-        assignedBy: 'System Admin',
-        createdAt: DateTime.now().subtract(const Duration(days: 3)),
-      ),
-
-      TaskModel(
-        id: 4,
-        taskTitle: 'Prepare Monthly Report',
-        taskDescription: 'Create performance report for all departments.',
-        deadline: DateTime.now().add(const Duration(days: 2)),
-        priority: 'High',
-        employeeId: 3,
-        employeeName: 'Robert Johnson',
-        status: 'pending',
-        assignedBy: 'Tech Head',
-        createdAt: DateTime.now().subtract(const Duration(days: 2)),
-      ),
-    ];
-  }
-
   // Update task status
   Future<bool> updateTaskStatus(int taskId, String newStatus) async {
     try {
       // In a real app, this would update the status in an API or database
       _logger.d('Updating task $taskId status to: $newStatus');
-      // Mock success response
-      return true;
+      final response = await put(Api.updateTaskStatusApi, {
+        'task_id': taskId,
+        'status': newStatus,
+      });
+
+      return response.statusCode == 200;
     } catch (e) {
       _logger.e('Error updating task status: $e');
       return false;

@@ -4,6 +4,7 @@ import 'package:hrms_app/app/data/repositories/__auth.dart';
 import 'package:hrms_app/service_locator.dart';
 import 'package:logger/logger.dart';
 
+import '../../data/services/user_service.dart';
 import '../../routes/app_routes.dart';
 
 class RegisterController extends GetxController {
@@ -72,6 +73,8 @@ class RegisterController extends GetxController {
           emailController.text,
           passwordController.text,
         );
+
+        sl<UserService>().saveUser(response);
 
         // Navigate to subscription plans
         Get.offAllNamed(AppRoutes.subscriptionPlans);

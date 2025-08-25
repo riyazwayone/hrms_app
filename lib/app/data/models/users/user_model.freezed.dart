@@ -25,8 +25,8 @@ mixin _$UserModel {
   String get shiftTiming;
   String get designation;
   String get shopName;
-  String get shopId;
-  String get shopOwnerId;
+  int get shopId;
+  int get shopOwnerId;
   int? get planId;
   PlanModel? get plan;
   UserRole get role;
@@ -112,8 +112,8 @@ abstract mixin class $UserModelCopyWith<$Res> {
       String shiftTiming,
       String designation,
       String shopName,
-      String shopId,
-      String shopOwnerId,
+      int shopId,
+      int shopOwnerId,
       int? planId,
       PlanModel? plan,
       UserRole role});
@@ -193,11 +193,11 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
       shopId: null == shopId
           ? _self.shopId
           : shopId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       shopOwnerId: null == shopOwnerId
           ? _self.shopOwnerId
           : shopOwnerId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       planId: freezed == planId
           ? _self.planId
           : planId // ignore: cast_nullable_to_non_nullable
@@ -242,8 +242,8 @@ class _UserModel implements UserModel {
       this.shiftTiming = "",
       this.designation = "",
       this.shopName = "",
-      this.shopId = "",
-      this.shopOwnerId = "",
+      this.shopId = 0,
+      this.shopOwnerId = 0,
       this.planId,
       this.plan,
       this.role = UserRole.employee});
@@ -281,10 +281,10 @@ class _UserModel implements UserModel {
   final String shopName;
   @override
   @JsonKey()
-  final String shopId;
+  final int shopId;
   @override
   @JsonKey()
-  final String shopOwnerId;
+  final int shopOwnerId;
   @override
   final int? planId;
   @override
@@ -382,8 +382,8 @@ abstract mixin class _$UserModelCopyWith<$Res>
       String shiftTiming,
       String designation,
       String shopName,
-      String shopId,
-      String shopOwnerId,
+      int shopId,
+      int shopOwnerId,
       int? planId,
       PlanModel? plan,
       UserRole role});
@@ -464,11 +464,11 @@ class __$UserModelCopyWithImpl<$Res> implements _$UserModelCopyWith<$Res> {
       shopId: null == shopId
           ? _self.shopId
           : shopId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       shopOwnerId: null == shopOwnerId
           ? _self.shopOwnerId
           : shopOwnerId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       planId: freezed == planId
           ? _self.planId
           : planId // ignore: cast_nullable_to_non_nullable

@@ -5,6 +5,7 @@ import 'package:hrms_app/app/core/theme/app_text_styles.dart';
 import 'package:hrms_app/app/modules/employee/all_employees/all_employees_controller.dart';
 
 import '../../../global_widgets/employee_card.dart';
+import '../../../global_widgets/employee_item.dart';
 
 class AllEmployeesView extends GetView<AllEmployeesController> {
   const AllEmployeesView({super.key});
@@ -28,7 +29,24 @@ class AllEmployeesView extends GetView<AllEmployeesController> {
       ),
       body: Column(
         children: [
-          // Shop filter can be added here
+          // Search bar
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: TextField(
+              onChanged: (value) => controller.searchQuery.value = value,
+              decoration: InputDecoration(
+                hintText: 'Search employees...',
+                prefixIcon: const Icon(Icons.search),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide.none,
+                ),
+                filled: true,
+                fillColor: Colors.white,
+                contentPadding: const EdgeInsets.symmetric(vertical: 16.0),
+              ),
+            ),
+          ),
 
           Expanded(
             child: Obx(() {
@@ -36,7 +54,7 @@ class AllEmployeesView extends GetView<AllEmployeesController> {
                 return const Center(child: CircularProgressIndicator());
               }
 
-              if (controller.employees.isEmpty) {
+              if (controller.filteredEmployees.isEmpty) {
                 return _buildEmptyState();
               }
 
@@ -69,6 +87,14 @@ class AllEmployeesView extends GetView<AllEmployeesController> {
             style: AppTextStyles.bodyMedium.copyWith(color: Colors.grey),
           ),
           const SizedBox(height: 8),
+          Container(
+            width: 200,
+            child: ElevatedButton(
+                onPressed: () {
+                  controller.fetchAllEmployees();
+                },
+                child: const Text('Refresh')),
+          )
         ],
       ),
     );
@@ -79,12 +105,14 @@ class AllEmployeesView extends GetView<AllEmployeesController> {
       onRefresh: controller.fetchAllEmployees,
       child: ListView.builder(
         padding: const EdgeInsets.all(16.0),
-        itemCount: controller.employees.length,
+        itemCount: controller.filteredEmployees.length,
         itemBuilder: (context, index) {
-          final employee = controller.employees[index];
-          return EmployeeCard(
-            employee: employee,
-            onDelete: () => controller.deleteEmployee(employee.id),
+          final employee = controller.filteredEmployees[index];
+          return GestureDetector(
+            onTap: () => controller.viewEmployeeProfile(employee),
+            child: EmployeeItem(
+              employee: employee,
+            ),
           );
         },
       ),

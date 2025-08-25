@@ -80,6 +80,9 @@ class AuthRepositoryImpl extends GetConnect implements AuthRepository {
       'email': email,
       'password': password,
     });
+
+    _logger.f(response.body);
+
     if (response.status.hasError) {
       throw Exception('Failed to login');
     }

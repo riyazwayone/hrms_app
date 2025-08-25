@@ -60,7 +60,8 @@ class SubscriptionRepositoryImpl extends GetConnect
     if (response.statusCode == 200) {
       final json = jsonDecode(response.bodyString ?? "");
       final plan = PlanModel.fromJson(json['plan']);
-      final user = await sl<UserService>().getCurrentUser();
+      final user = sl<UserService>().getCurrentUserSync();
+      _logger.f(user?.toJson());
       final updatedUser = user!.copyWith(plan: plan);
       await sl<UserService>().saveUser(updatedUser);
       return true;
