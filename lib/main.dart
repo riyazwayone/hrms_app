@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hrms_app/service_locator.dart';
@@ -11,6 +12,11 @@ import 'app/routes/app_pages.dart';
 void main() async {
   await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize Stripe
+  Stripe.publishableKey =
+      'pk_test_51RH2RaISKM24xIWy8NNyeONgmE7ESp2SP0WRseNBfWioXEJJswtPn54aIOUvn93R7Py3XlwexoPy2IkzcdP8n1Uu003TH1LBUS';
+  await Stripe.instance.applySettings();
 
   await initServices();
 

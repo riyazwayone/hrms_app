@@ -67,6 +67,7 @@ class RegisterView extends GetView<RegisterController> {
                 // Last name field
                 TextFormField(
                   controller: controller.phoneController,
+                  keyboardType: TextInputType.phone,
                   validator: controller.validatePhone,
                   decoration: InputDecoration(
                     labelText: 'Phone Number',

@@ -147,7 +147,7 @@ class CreateShopView extends GetView<CreateShopController> {
                   ),
                 ),
                 child: const Text(
-                  'Make Payment',
+                  'Create Shop',
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,

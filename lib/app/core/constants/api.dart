@@ -14,6 +14,7 @@ class Api {
   static const getPlansApi = '$baseUrl/get_plan.php';
   static const subscriptionPlansApi = '$baseUrl/select_plan.php';
   static const verifyPaymentApi = '$baseUrl/verify_payment.php';
+  static const createPaymentIntentApi = '$baseUrl/create_stripe_intent.php';
 
   static const checkInApi = '$baseUrl/attendance.php';
   static const checkOutApi =

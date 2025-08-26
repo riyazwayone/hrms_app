@@ -54,6 +54,8 @@ class SubscriptionPlanController extends GetxController {
 
   // Navigate to subscription details page
   void goToSubscriptionDetails() {
+    // loadSubscriptionPlans();
+    // return;
     if (selectedPlan.value != null) {
       Get.toNamed(
         AppRoutes.subscriptionDetails,

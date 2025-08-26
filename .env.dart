@@ -1,0 +1,1 @@
+const stripePublishableKey =  "pk_test_51RH2RaISKM24xIWy8NNyeONgmE7ESp2SP0WRseNBfWioXEJJswtPn54aIOUvn93R7Py3XlwexoPy2IkzcdP8n1Uu003TH1LBUS";

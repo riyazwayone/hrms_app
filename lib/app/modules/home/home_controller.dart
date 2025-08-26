@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hrms_app/app/core/utils/enums.dart';
@@ -187,6 +189,8 @@ class HomeController extends GetxController {
 
   // Refresh data
   Future<void> refreshData() async {
+    final token = await sl<UserService>().getHeaders();
+    log(token.toString());
     await _loadUserData();
     await loadAllEmployees();
     await employeeListController.fetchAllEmployees();

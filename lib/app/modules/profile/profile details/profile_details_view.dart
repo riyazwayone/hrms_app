@@ -1,23 +1,20 @@
+import 'dart:developer';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hrms_app/app/data/models/employee/employee_model.dart';
-import 'package:hrms_app/app/data/models/users/user_model.dart';
 import 'package:hrms_app/app/data/services/user_service.dart';
 import 'package:hrms_app/app/modules/profile/profile_controller.dart';
 import 'package:hrms_app/service_locator.dart';
 
 class ProfileDetailsView extends GetView<ProfileController> {
-  final EmployeeModel? employee;
-  final UserModel? user;
-
-  const ProfileDetailsView({Key? key, this.employee, this.user})
-      : super(key: key);
+  const ProfileDetailsView({super.key});
 
   @override
   Widget build(BuildContext context) {
     // Get data from either provided employee, user, or current logged in user
-    final userData = user ?? sl<UserService>().getCurrentUserSync()!;
-
+    final userData = sl<UserService>().getCurrentUserSync()!;
+    log(userData.toJson().toString());
     return Scaffold(
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
@@ -51,7 +48,12 @@ class ProfileDetailsView extends GetView<ProfileController> {
                     child: CircleAvatar(
                       radius: 50,
                       backgroundImage: userData.profileImage != null
-                          ? NetworkImage(userData.profileImage!)
+                          ? CachedNetworkImageProvider(
+                              userData.profileImage!,
+                              errorListener: (p0) {
+                                print("User profile image not found");
+                              },
+                            )
                           : const AssetImage(
                                   'assets/images/profile_placeholder.png')
                               as ImageProvider,

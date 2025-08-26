@@ -6,7 +6,7 @@ import 'package:hrms_app/app/core/theme/app_text_styles.dart';
 import 'package:hrms_app/app/modules/subscription/subscription_details_controller.dart';
 
 class SubscriptionDetailsView extends GetView<SubscriptionDetailsController> {
-  const SubscriptionDetailsView({Key? key}) : super(key: key);
+  const SubscriptionDetailsView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -350,7 +350,7 @@ class SubscriptionDetailsView extends GetView<SubscriptionDetailsController> {
                       ),
                     ),
                     child: const Text(
-                      'Next',
+                      'Next to Pay',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,

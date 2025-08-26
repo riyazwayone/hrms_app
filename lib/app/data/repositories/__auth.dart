@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:hrms_app/app/data/services/user_service.dart';
 import 'package:hrms_app/service_locator.dart';
@@ -31,6 +32,8 @@ class AuthRepositoryImpl extends GetConnect implements AuthRepository {
     });
     _logger.f(response.body);
     if (response.status.hasError) {
+      Fluttertoast.showToast(
+          msg: response.body['message'] ?? 'Failed to login');
       throw Exception('Failed to login');
     }
 

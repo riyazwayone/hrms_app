@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -91,7 +90,7 @@ class SubscriptionDetailsController extends GetxController {
   Future<void> _initializeStripePayment() async {
     try {
       // Calculate amount in lowest denomination (cents)
-      final amountInCents = (selectedPlan.value!.price).toInt();
+      final amountInCents = (selectedPlan.value!.price * 100).toInt();
 
       // 1. Create payment intent on the server
       final headers = await sl<UserService>().getHeaders();
@@ -99,8 +98,7 @@ class SubscriptionDetailsController extends GetxController {
         Api.createPaymentIntentApi,
         {
           'amount': amountInCents,
-          'currency': 'inr',
-          "email": sl<UserService>().getCurrentUserSync()!.email,
+          'currency': 'usd', // Change as needed based on your currency
           'payment_method_types[]': 'card',
           'plan_id': selectedPlan.value!.id,
         },
@@ -124,14 +122,14 @@ class SubscriptionDetailsController extends GetxController {
               ['client_secret'],
           merchantDisplayName: 'HRMS App',
           // Customer params
-          customerId: response.body['customerId'],
+          customerId: response.body['customer'],
           customerEphemeralKeySecret: response.body['ephemeralKey'],
           // Extra params
-          // applePay: const PaymentSheetApplePay(
-          //   merchantCountryCode: 'IN',
-          // ),
+          applePay: const PaymentSheetApplePay(
+            merchantCountryCode: 'US',
+          ),
           googlePay: const PaymentSheetGooglePay(
-            merchantCountryCode: 'IN',
+            merchantCountryCode: 'US',
             testEnv: true,
           ),
           style: ThemeMode.system,
@@ -157,6 +155,7 @@ class SubscriptionDetailsController extends GetxController {
   Future<void> _presentPaymentSheet() async {
     try {
       await Stripe.instance.presentPaymentSheet();
+
       // Payment succeeded, start verification
       isPaymentProcessing.value = false;
       isPaymentVerifying.value = true;
@@ -222,18 +221,18 @@ class SubscriptionDetailsController extends GetxController {
     try {
       final headers = await sl<UserService>().getHeaders();
       final response = await GetConnect().get(
-        '${Api.verifyPaymentApi}?payment_intent_id=${paymentIntentId.value}',
+        Api.verifyPaymentApi + '?payment_intent_id=${paymentIntentId.value}',
         headers: headers,
       );
 
-      _logger.f(response.body);
+      _logger.d('Payment verification response: ${response.body}');
 
       if (response.statusCode == 200 && response.body['verified'] == true) {
         _verificationTimer?.cancel();
         isPaymentVerifying.value = false;
 
         // Now subscribe to plan as the payment is verified
-        await _finalizePlanSubscription(response.body);
+        await _finalizePlanSubscription();
       }
     } catch (e) {
       _logger.e('Error verifying payment: $e');
@@ -241,23 +240,28 @@ class SubscriptionDetailsController extends GetxController {
     }
   }
 
-  Future<void> _finalizePlanSubscription(Map<String, dynamic> json) async {
+  Future<void> _finalizePlanSubscription() async {
     try {
       isLoading.value = true;
 
       if (selectedPlan.value == null) {
         throw Exception('No plan selected');
       }
-      final plan = PlanModel.fromJson(json['plan']);
-      final user = sl<UserService>().getCurrentUserSync();
-      _logger.f(user?.toJson());
-      final updatedUser = user!.copyWith(plan: plan);
-      await sl<UserService>().saveUser(updatedUser);
 
-      Fluttertoast.showToast(msg: 'Subscription successful');
+      // Call repository to subscribe to plan with verified payment
+      final success = await sl<SubscriptionRepository>().subscribeToPlan(
+        selectedPlan.value?.id ?? 1,
+        {'payment_intent_id': paymentIntentId.value},
+      );
 
-      // Navigate to home or dashboard based on user role
-      Get.offAllNamed(AppRoutes.createShop);
+      if (success) {
+        Fluttertoast.showToast(msg: 'Subscription successful');
+
+        // Navigate to home or dashboard based on user role
+        Get.offAllNamed(AppRoutes.createShop);
+      } else {
+        throw Exception('Subscription failed');
+      }
     } catch (e, stack) {
       _logger.e('Error completing subscription: $e');
       _logger.e('Stack trace: $stack');

@@ -80,12 +80,6 @@ class RegisterController extends GetxController {
         Get.offAllNamed(AppRoutes.subscriptionPlans);
       } catch (e, stack) {
         Logger().e('Registration failed: $e', stackTrace: stack);
-
-        Get.snackbar(
-          'Error',
-          'Registration failed. Please try again.',
-          snackPosition: SnackPosition.BOTTOM,
-        );
       } finally {
         isLoading.value = false;
       }

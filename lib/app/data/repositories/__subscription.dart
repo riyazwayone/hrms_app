@@ -50,9 +50,7 @@ class SubscriptionRepositoryImpl extends GetConnect
 
     final response = await post(
       Api.subscriptionPlansApi,
-      {
-        'plan_id': "$planId",
-      },
+      {'plan_id': "$planId", "paymentDetails": paymentDetails},
       headers: headers,
     );
 
