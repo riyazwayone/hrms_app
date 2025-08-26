@@ -1,9 +1,10 @@
 class Api {
-  static const baseUrl = 'http://192.168.1.41/hrms';
+  static const baseUrl = 'http://192.168.1.55/hrms';
 
   // Employee || HR Auth
   static const employeeLoginApi = '$baseUrl/employee_login.php';
   static const createEmployeeApi = '$baseUrl/create_employee.php';
+  static const deleteEmployeeApi = '$baseUrl/delete_employee.php';
 
   // Admin Auth
   static const registerApi = '$baseUrl/register.php';
@@ -12,6 +13,7 @@ class Api {
   // Subscription
   static const getPlansApi = '$baseUrl/get_plan.php';
   static const subscriptionPlansApi = '$baseUrl/select_plan.php';
+  static const verifyPaymentApi = '$baseUrl/verify_payment.php';
 
   static const checkInApi = '$baseUrl/attendance.php';
   static const checkOutApi =

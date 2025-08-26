@@ -26,6 +26,10 @@ _EmployeeModel _$EmployeeModelFromJson(Map<String, dynamic> json) =>
       shopContactNumber: json['shop_contact_number'] as String? ?? '',
       shopAddress: json['shop_address'] as String? ?? '',
       description: json['description'] as String? ?? '',
+      punchInDays: json['punch_in_days'] as String? ?? '',
+      punchInPercentage: json['punch_in_percentage'] as String? ?? '',
+      inTime: AppUtils.anyToDuration(json['in_time']),
+      outTime: AppUtils.anyToDuration(json['out_time']),
     );
 
 Map<String, dynamic> _$EmployeeModelToJson(_EmployeeModel instance) =>
@@ -48,4 +52,8 @@ Map<String, dynamic> _$EmployeeModelToJson(_EmployeeModel instance) =>
       'shop_contact_number': instance.shopContactNumber,
       'shop_address': instance.shopAddress,
       'description': instance.description,
+      'punch_in_days': instance.punchInDays,
+      'punch_in_percentage': instance.punchInPercentage,
+      'in_time': instance.inTime?.inMicroseconds,
+      'out_time': instance.outTime?.inMicroseconds,
     };

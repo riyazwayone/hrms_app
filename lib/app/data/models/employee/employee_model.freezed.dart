@@ -34,6 +34,12 @@ mixin _$EmployeeModel {
   String get shopContactNumber;
   String get shopAddress;
   String get description;
+  String get punchInDays;
+  String get punchInPercentage;
+  @JsonKey(fromJson: AppUtils.anyToDuration)
+  Duration? get inTime;
+  @JsonKey(fromJson: AppUtils.anyToDuration)
+  Duration? get outTime;
 
   /// Create a copy of EmployeeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -82,35 +88,46 @@ mixin _$EmployeeModel {
             (identical(other.shopAddress, shopAddress) ||
                 other.shopAddress == shopAddress) &&
             (identical(other.description, description) ||
-                other.description == description));
+                other.description == description) &&
+            (identical(other.punchInDays, punchInDays) ||
+                other.punchInDays == punchInDays) &&
+            (identical(other.punchInPercentage, punchInPercentage) ||
+                other.punchInPercentage == punchInPercentage) &&
+            (identical(other.inTime, inTime) || other.inTime == inTime) &&
+            (identical(other.outTime, outTime) || other.outTime == outTime));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      recruiterId,
-      shopId,
-      employeeName,
-      email,
-      phoneNumber,
-      profileImage,
-      salary,
-      shiftTiming,
-      shiftType,
-      employmentType,
-      designation,
-      password,
-      createdAt,
-      shopName,
-      shopContactNumber,
-      shopAddress,
-      description);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        recruiterId,
+        shopId,
+        employeeName,
+        email,
+        phoneNumber,
+        profileImage,
+        salary,
+        shiftTiming,
+        shiftType,
+        employmentType,
+        designation,
+        password,
+        createdAt,
+        shopName,
+        shopContactNumber,
+        shopAddress,
+        description,
+        punchInDays,
+        punchInPercentage,
+        inTime,
+        outTime
+      ]);
 
   @override
   String toString() {
-    return 'EmployeeModel(id: $id, recruiterId: $recruiterId, shopId: $shopId, employeeName: $employeeName, email: $email, phoneNumber: $phoneNumber, profileImage: $profileImage, salary: $salary, shiftTiming: $shiftTiming, shiftType: $shiftType, employmentType: $employmentType, designation: $designation, password: $password, createdAt: $createdAt, shopName: $shopName, shopContactNumber: $shopContactNumber, shopAddress: $shopAddress, description: $description)';
+    return 'EmployeeModel(id: $id, recruiterId: $recruiterId, shopId: $shopId, employeeName: $employeeName, email: $email, phoneNumber: $phoneNumber, profileImage: $profileImage, salary: $salary, shiftTiming: $shiftTiming, shiftType: $shiftType, employmentType: $employmentType, designation: $designation, password: $password, createdAt: $createdAt, shopName: $shopName, shopContactNumber: $shopContactNumber, shopAddress: $shopAddress, description: $description, punchInDays: $punchInDays, punchInPercentage: $punchInPercentage, inTime: $inTime, outTime: $outTime)';
   }
 }
 
@@ -138,7 +155,11 @@ abstract mixin class $EmployeeModelCopyWith<$Res> {
       String shopName,
       String shopContactNumber,
       String shopAddress,
-      String description});
+      String description,
+      String punchInDays,
+      String punchInPercentage,
+      @JsonKey(fromJson: AppUtils.anyToDuration) Duration? inTime,
+      @JsonKey(fromJson: AppUtils.anyToDuration) Duration? outTime});
 }
 
 /// @nodoc
@@ -172,6 +193,10 @@ class _$EmployeeModelCopyWithImpl<$Res>
     Object? shopContactNumber = null,
     Object? shopAddress = null,
     Object? description = null,
+    Object? punchInDays = null,
+    Object? punchInPercentage = null,
+    Object? inTime = freezed,
+    Object? outTime = freezed,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -246,6 +271,22 @@ class _$EmployeeModelCopyWithImpl<$Res>
           ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      punchInDays: null == punchInDays
+          ? _self.punchInDays
+          : punchInDays // ignore: cast_nullable_to_non_nullable
+              as String,
+      punchInPercentage: null == punchInPercentage
+          ? _self.punchInPercentage
+          : punchInPercentage // ignore: cast_nullable_to_non_nullable
+              as String,
+      inTime: freezed == inTime
+          ? _self.inTime
+          : inTime // ignore: cast_nullable_to_non_nullable
+              as Duration?,
+      outTime: freezed == outTime
+          ? _self.outTime
+          : outTime // ignore: cast_nullable_to_non_nullable
+              as Duration?,
     ));
   }
 }
@@ -272,7 +313,11 @@ class _EmployeeModel implements EmployeeModel {
       this.shopName = '',
       this.shopContactNumber = '',
       this.shopAddress = '',
-      this.description = ''});
+      this.description = '',
+      this.punchInDays = '',
+      this.punchInPercentage = '',
+      @JsonKey(fromJson: AppUtils.anyToDuration) this.inTime,
+      @JsonKey(fromJson: AppUtils.anyToDuration) this.outTime});
   factory _EmployeeModel.fromJson(Map<String, dynamic> json) =>
       _$EmployeeModelFromJson(json);
 
@@ -330,6 +375,18 @@ class _EmployeeModel implements EmployeeModel {
   @override
   @JsonKey()
   final String description;
+  @override
+  @JsonKey()
+  final String punchInDays;
+  @override
+  @JsonKey()
+  final String punchInPercentage;
+  @override
+  @JsonKey(fromJson: AppUtils.anyToDuration)
+  final Duration? inTime;
+  @override
+  @JsonKey(fromJson: AppUtils.anyToDuration)
+  final Duration? outTime;
 
   /// Create a copy of EmployeeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -382,35 +439,46 @@ class _EmployeeModel implements EmployeeModel {
             (identical(other.shopAddress, shopAddress) ||
                 other.shopAddress == shopAddress) &&
             (identical(other.description, description) ||
-                other.description == description));
+                other.description == description) &&
+            (identical(other.punchInDays, punchInDays) ||
+                other.punchInDays == punchInDays) &&
+            (identical(other.punchInPercentage, punchInPercentage) ||
+                other.punchInPercentage == punchInPercentage) &&
+            (identical(other.inTime, inTime) || other.inTime == inTime) &&
+            (identical(other.outTime, outTime) || other.outTime == outTime));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      recruiterId,
-      shopId,
-      employeeName,
-      email,
-      phoneNumber,
-      profileImage,
-      salary,
-      shiftTiming,
-      shiftType,
-      employmentType,
-      designation,
-      password,
-      createdAt,
-      shopName,
-      shopContactNumber,
-      shopAddress,
-      description);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        recruiterId,
+        shopId,
+        employeeName,
+        email,
+        phoneNumber,
+        profileImage,
+        salary,
+        shiftTiming,
+        shiftType,
+        employmentType,
+        designation,
+        password,
+        createdAt,
+        shopName,
+        shopContactNumber,
+        shopAddress,
+        description,
+        punchInDays,
+        punchInPercentage,
+        inTime,
+        outTime
+      ]);
 
   @override
   String toString() {
-    return 'EmployeeModel(id: $id, recruiterId: $recruiterId, shopId: $shopId, employeeName: $employeeName, email: $email, phoneNumber: $phoneNumber, profileImage: $profileImage, salary: $salary, shiftTiming: $shiftTiming, shiftType: $shiftType, employmentType: $employmentType, designation: $designation, password: $password, createdAt: $createdAt, shopName: $shopName, shopContactNumber: $shopContactNumber, shopAddress: $shopAddress, description: $description)';
+    return 'EmployeeModel(id: $id, recruiterId: $recruiterId, shopId: $shopId, employeeName: $employeeName, email: $email, phoneNumber: $phoneNumber, profileImage: $profileImage, salary: $salary, shiftTiming: $shiftTiming, shiftType: $shiftType, employmentType: $employmentType, designation: $designation, password: $password, createdAt: $createdAt, shopName: $shopName, shopContactNumber: $shopContactNumber, shopAddress: $shopAddress, description: $description, punchInDays: $punchInDays, punchInPercentage: $punchInPercentage, inTime: $inTime, outTime: $outTime)';
   }
 }
 
@@ -440,7 +508,11 @@ abstract mixin class _$EmployeeModelCopyWith<$Res>
       String shopName,
       String shopContactNumber,
       String shopAddress,
-      String description});
+      String description,
+      String punchInDays,
+      String punchInPercentage,
+      @JsonKey(fromJson: AppUtils.anyToDuration) Duration? inTime,
+      @JsonKey(fromJson: AppUtils.anyToDuration) Duration? outTime});
 }
 
 /// @nodoc
@@ -474,6 +546,10 @@ class __$EmployeeModelCopyWithImpl<$Res>
     Object? shopContactNumber = null,
     Object? shopAddress = null,
     Object? description = null,
+    Object? punchInDays = null,
+    Object? punchInPercentage = null,
+    Object? inTime = freezed,
+    Object? outTime = freezed,
   }) {
     return _then(_EmployeeModel(
       id: null == id
@@ -548,6 +624,22 @@ class __$EmployeeModelCopyWithImpl<$Res>
           ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      punchInDays: null == punchInDays
+          ? _self.punchInDays
+          : punchInDays // ignore: cast_nullable_to_non_nullable
+              as String,
+      punchInPercentage: null == punchInPercentage
+          ? _self.punchInPercentage
+          : punchInPercentage // ignore: cast_nullable_to_non_nullable
+              as String,
+      inTime: freezed == inTime
+          ? _self.inTime
+          : inTime // ignore: cast_nullable_to_non_nullable
+              as Duration?,
+      outTime: freezed == outTime
+          ? _self.outTime
+          : outTime // ignore: cast_nullable_to_non_nullable
+              as Duration?,
     ));
   }
 }

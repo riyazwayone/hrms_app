@@ -23,6 +23,8 @@ mixin _$PlanModel {
   int get employeeLimit;
   @JsonKey(fromJson: AppUtils.anyToBool)
   bool? get isRecommended;
+  @JsonKey(fromJson: AppUtils.anyToDateTime)
+  DateTime? get createdAt;
 
   /// Create a copy of PlanModel
   /// with the given fields replaced by the non-null parameter values.
@@ -48,17 +50,19 @@ mixin _$PlanModel {
             (identical(other.employeeLimit, employeeLimit) ||
                 other.employeeLimit == employeeLimit) &&
             (identical(other.isRecommended, isRecommended) ||
-                other.isRecommended == isRecommended));
+                other.isRecommended == isRecommended) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, planName, price, shopNumber,
-      employeeLimit, isRecommended);
+      employeeLimit, isRecommended, createdAt);
 
   @override
   String toString() {
-    return 'PlanModel(id: $id, planName: $planName, price: $price, shopNumber: $shopNumber, employeeLimit: $employeeLimit, isRecommended: $isRecommended)';
+    return 'PlanModel(id: $id, planName: $planName, price: $price, shopNumber: $shopNumber, employeeLimit: $employeeLimit, isRecommended: $isRecommended, createdAt: $createdAt)';
   }
 }
 
@@ -73,7 +77,8 @@ abstract mixin class $PlanModelCopyWith<$Res> {
       @JsonKey(fromJson: AppUtils.anyToDouble) double price,
       int shopNumber,
       int employeeLimit,
-      @JsonKey(fromJson: AppUtils.anyToBool) bool? isRecommended});
+      @JsonKey(fromJson: AppUtils.anyToBool) bool? isRecommended,
+      @JsonKey(fromJson: AppUtils.anyToDateTime) DateTime? createdAt});
 }
 
 /// @nodoc
@@ -94,6 +99,7 @@ class _$PlanModelCopyWithImpl<$Res> implements $PlanModelCopyWith<$Res> {
     Object? shopNumber = null,
     Object? employeeLimit = null,
     Object? isRecommended = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_self.copyWith(
       id: freezed == id
@@ -120,26 +126,29 @@ class _$PlanModelCopyWithImpl<$Res> implements $PlanModelCopyWith<$Res> {
           ? _self.isRecommended
           : isRecommended // ignore: cast_nullable_to_non_nullable
               as bool?,
+      createdAt: freezed == createdAt
+          ? _self.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
 
 /// @nodoc
-
-@JsonSerializable(fieldRename: FieldRename.snake)
+@JsonSerializable()
 class _PlanModel implements PlanModel {
   _PlanModel(
-      {this.id = 0,
+      {this.id,
       required this.planName,
       @JsonKey(fromJson: AppUtils.anyToDouble) this.price = 0.0,
       required this.shopNumber,
       required this.employeeLimit,
-      @JsonKey(fromJson: AppUtils.anyToBool) this.isRecommended = false});
+      @JsonKey(fromJson: AppUtils.anyToBool) this.isRecommended = false,
+      @JsonKey(fromJson: AppUtils.anyToDateTime) this.createdAt});
   factory _PlanModel.fromJson(Map<String, dynamic> json) =>
       _$PlanModelFromJson(json);
 
   @override
-  @JsonKey()
   final int? id;
   @override
   final String planName;
@@ -153,6 +162,9 @@ class _PlanModel implements PlanModel {
   @override
   @JsonKey(fromJson: AppUtils.anyToBool)
   final bool? isRecommended;
+  @override
+  @JsonKey(fromJson: AppUtils.anyToDateTime)
+  final DateTime? createdAt;
 
   /// Create a copy of PlanModel
   /// with the given fields replaced by the non-null parameter values.
@@ -183,17 +195,19 @@ class _PlanModel implements PlanModel {
             (identical(other.employeeLimit, employeeLimit) ||
                 other.employeeLimit == employeeLimit) &&
             (identical(other.isRecommended, isRecommended) ||
-                other.isRecommended == isRecommended));
+                other.isRecommended == isRecommended) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, planName, price, shopNumber,
-      employeeLimit, isRecommended);
+      employeeLimit, isRecommended, createdAt);
 
   @override
   String toString() {
-    return 'PlanModel(id: $id, planName: $planName, price: $price, shopNumber: $shopNumber, employeeLimit: $employeeLimit, isRecommended: $isRecommended)';
+    return 'PlanModel(id: $id, planName: $planName, price: $price, shopNumber: $shopNumber, employeeLimit: $employeeLimit, isRecommended: $isRecommended, createdAt: $createdAt)';
   }
 }
 
@@ -211,7 +225,8 @@ abstract mixin class _$PlanModelCopyWith<$Res>
       @JsonKey(fromJson: AppUtils.anyToDouble) double price,
       int shopNumber,
       int employeeLimit,
-      @JsonKey(fromJson: AppUtils.anyToBool) bool? isRecommended});
+      @JsonKey(fromJson: AppUtils.anyToBool) bool? isRecommended,
+      @JsonKey(fromJson: AppUtils.anyToDateTime) DateTime? createdAt});
 }
 
 /// @nodoc
@@ -232,6 +247,7 @@ class __$PlanModelCopyWithImpl<$Res> implements _$PlanModelCopyWith<$Res> {
     Object? shopNumber = null,
     Object? employeeLimit = null,
     Object? isRecommended = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_PlanModel(
       id: freezed == id
@@ -258,6 +274,10 @@ class __$PlanModelCopyWithImpl<$Res> implements _$PlanModelCopyWith<$Res> {
           ? _self.isRecommended
           : isRecommended // ignore: cast_nullable_to_non_nullable
               as bool?,
+      createdAt: freezed == createdAt
+          ? _self.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }

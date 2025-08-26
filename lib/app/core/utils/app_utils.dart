@@ -257,9 +257,9 @@ class AppUtils {
     return DateTime.now();
   }
 
-  static Duration anyToDuration(dynamic value) {
+  static Duration? anyToDuration(dynamic value) {
     try {
-      if (value == null) return Duration.zero;
+      if (value == null) return null;
 
       if (value is Duration) return value;
 

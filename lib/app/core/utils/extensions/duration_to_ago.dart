@@ -79,3 +79,18 @@ String _daySuffix(int day) {
       return 'th';
   }
 }
+
+extension DurationToTime on Duration {
+  /// Converts Duration (hours/minutes) to hh:mm AM/PM format
+  String toAmPmString() {
+    int totalMinutes = inMinutes;
+    int hours = (totalMinutes ~/ 60) % 24;
+    int minutes = totalMinutes % 60;
+
+    final ampm = hours >= 12 ? 'PM' : 'AM';
+    final hour12 = hours == 0 ? 12 : (hours > 12 ? hours - 12 : hours);
+
+    final minuteStr = minutes.toString().padLeft(2, '0');
+    return '$hour12:$minuteStr $ampm';
+  }
+}

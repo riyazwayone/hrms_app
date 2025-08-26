@@ -7,22 +7,24 @@ part of 'plan_model.dart';
 // **************************************************************************
 
 _PlanModel _$PlanModelFromJson(Map<String, dynamic> json) => _PlanModel(
-      id: (json['id'] as num?)?.toInt() ?? 0,
-      planName: json['plan_name'] as String,
+      id: (json['id'] as num?)?.toInt(),
+      planName: json['planName'] as String,
       price: json['price'] == null ? 0.0 : AppUtils.anyToDouble(json['price']),
-      shopNumber: (json['shop_number'] as num).toInt(),
-      employeeLimit: (json['employee_limit'] as num).toInt(),
-      isRecommended: json['is_recommended'] == null
+      shopNumber: (json['shopNumber'] as num).toInt(),
+      employeeLimit: (json['employeeLimit'] as num).toInt(),
+      isRecommended: json['isRecommended'] == null
           ? false
-          : AppUtils.anyToBool(json['is_recommended']),
+          : AppUtils.anyToBool(json['isRecommended']),
+      createdAt: AppUtils.anyToDateTime(json['createdAt']),
     );
 
 Map<String, dynamic> _$PlanModelToJson(_PlanModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'plan_name': instance.planName,
+      'planName': instance.planName,
       'price': instance.price,
-      'shop_number': instance.shopNumber,
-      'employee_limit': instance.employeeLimit,
-      'is_recommended': instance.isRecommended,
+      'shopNumber': instance.shopNumber,
+      'employeeLimit': instance.employeeLimit,
+      'isRecommended': instance.isRecommended,
+      'createdAt': instance.createdAt?.toIso8601String(),
     };

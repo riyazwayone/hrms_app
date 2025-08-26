@@ -1,3 +1,4 @@
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:hrms_app/app/core/constants/api.dart';
 import 'package:hrms_app/app/data/models/employee/employee_model.dart';
@@ -29,6 +30,11 @@ class EmployeeRepository extends GetConnect {
       final response = await post(Api.createEmployeeApi, formData,
           headers: headers, contentType: 'multipart/form-data');
       _logger.f(response.body);
+
+      if (response.body['status'] != "success") {
+        _logger.e('Error creating employee: ${response.body['message']}');
+        throw response.body['message'] ?? 'Error creating employee';
+      }
 
       return response.statusCode == 200;
     } catch (e, stack) {
@@ -88,6 +94,26 @@ class EmployeeRepository extends GetConnect {
       return data.map((item) => EmployeeModel.fromJson(item)).toList();
     } catch (e, stack) {
       _logger.e('Error getting all employees: $e');
+      _logger.e('Stack trace: $stack');
+      rethrow;
+    }
+  }
+
+  // Delete employee
+  Future<bool> deleteEmployee(int id) async {
+    try {
+      _logger.d('Deleting employee by ID: $id');
+      final headers = await sl<UserService>().getHeaders();
+      final response = await delete(Api.deleteEmployeeApi,
+          query: {'id': id.toString()}, headers: headers);
+      _logger.f(response.body);
+      if (response.status.hasError) {
+        _logger.e('Error deleting employee: ${response.statusText}');
+        return false;
+      }
+      return true;
+    } catch (e, stack) {
+      _logger.e('Error deleting employee: $e');
       _logger.e('Stack trace: $stack');
       rethrow;
     }

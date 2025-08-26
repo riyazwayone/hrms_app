@@ -50,8 +50,8 @@ class ProfileDetailsView extends GetView<ProfileController> {
                   Center(
                     child: CircleAvatar(
                       radius: 50,
-                      backgroundImage: userData.profileImage.isNotEmpty
-                          ? NetworkImage(userData.profileImage)
+                      backgroundImage: userData.profileImage != null
+                          ? NetworkImage(userData.profileImage!)
                           : const AssetImage(
                                   'assets/images/profile_placeholder.png')
                               as ImageProvider,

@@ -33,7 +33,7 @@ class SliverAppBarWidget extends StatelessWidget {
                 Row(
                   children: [
                     CachedNetworkImage(
-                      imageUrl: user.profileImage,
+                      imageUrl: user.profileImage ?? "",
                       placeholder: (context, url) =>
                           const CircularProgressIndicator(),
                       errorWidget: (context, url, error) => CircleAvatar(

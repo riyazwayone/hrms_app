@@ -122,10 +122,13 @@ class CreateEmployeeView extends GetView<CreateEmployeeController> {
             ),
             const SizedBox(height: 24.0),
             // Designation dropdown
-            if (controller.shopListController != null)
+            if (controller.shopListController != null &&
+                controller.shopListController!.shops.isNotEmpty)
               _buildDropdown(
                     label: 'Select Shop',
-                    value: controller.selectedShop.value,
+                    value: controller.selectedShop.value != null
+                        ? controller.selectedShop.value!.shopName!
+                        : controller.shopListController!.shops.first.shopName!,
                     items: controller.shopListController?.shops
                             .map((e) => e.shopName ?? '')
                             .where((name) => name.isNotEmpty)
@@ -146,6 +149,20 @@ class CreateEmployeeView extends GetView<CreateEmployeeController> {
               items: controller.designationOptions,
               onChanged: controller.updateDesignation,
             ),
+            if (controller.selectedDesignation.value != 'hr' &&
+                controller.allEmployeesController!.employees.isNotEmpty) ...{
+              const SizedBox(height: 16.0),
+              _buildDropdown(
+                label: 'Assign HR',
+                value: controller.selectedHr.value != null
+                    ? controller.selectedHr.value!.employeeName
+                    : controller.getHrList().first.employeeName,
+                items:
+                    controller.getHrList().map((e) => e.employeeName).toList(),
+                onChanged: controller.updateHr,
+              ),
+            },
+
             const SizedBox(height: 16.0),
 
             // Employment Type dropdown

@@ -3,15 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hrms_app/app/core/theme/app_colors.dart';
 import 'package:hrms_app/app/core/theme/app_text_styles.dart';
+import 'package:hrms_app/app/core/utils/extensions/duration_to_ago.dart';
 import 'package:hrms_app/app/data/models/employee/employee_model.dart';
+import 'package:hrms_app/app/modules/employee/employee_profile/employee_profile_controller.dart';
 
-class EmployeeProfileView extends StatelessWidget {
+class EmployeeProfileView extends GetView<EmployeeProfileController> {
   final EmployeeModel employee;
 
   const EmployeeProfileView({
-    Key? key,
+    super.key,
     required this.employee,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +41,44 @@ class EmployeeProfileView extends StatelessWidget {
             _buildPerformanceInfo(),
             if (employee.designation.toLowerCase() == 'employee')
               _buildReportingManager(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  foregroundColor: Colors.white,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: const Text('Delete Employee'),
+                      content: const Text(
+                          'Are you sure you want to delete this employee?'),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.of(context).pop(),
+                          child: const Text('Cancel'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            controller.deleteEmployee(employee.id);
+                          },
+                          child: const Text('Delete',
+                              style: TextStyle(color: Colors.red)),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                label: const Text('Delete Employee'),
+              ),
+            )
           ],
         ),
       ),
@@ -135,15 +175,15 @@ class EmployeeProfileView extends StatelessWidget {
         children: [
           Expanded(
             child: _buildAttendanceCard(
-              '09:00 AM',
+              employee.inTime?.toAmPmString() ?? "Not Yet",
               'Punch In',
               Icons.login,
             ),
           ),
           Expanded(
             child: _buildAttendanceCard(
-              'Not Yet',
-              '09:00 PM',
+              employee.outTime?.toAmPmString() ?? "Not Yet",
+              'Punch Out',
               Icons.logout,
               isActive: false,
             ),
@@ -160,7 +200,7 @@ class EmployeeProfileView extends StatelessWidget {
         children: [
           Expanded(
             child: _buildPerformanceCard(
-              '96%',
+              '${employee.punchInPercentage}%',
               'On Time',
               Icons.check_circle_outline,
               Colors.green,
@@ -168,7 +208,7 @@ class EmployeeProfileView extends StatelessWidget {
           ),
           Expanded(
             child: _buildPerformanceCard(
-              '28 Days',
+              '${employee.punchInDays} Days',
               'Total Attendance',
               Icons.calendar_today,
               AppColors.primary,

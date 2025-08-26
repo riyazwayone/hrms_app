@@ -12,7 +12,7 @@ sealed class UserModel with _$UserModel {
     required int id,
     @Default("Unknown") String name,
     @Default("") String email,
-    @Default("") String profileImage,
+    String? profileImage,
     @Default("") String phoneNumber,
     @Default("") String salary,
     @Default("") String shiftType,

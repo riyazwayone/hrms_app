@@ -34,6 +34,38 @@ class SubscriptionDetailsView extends GetView<SubscriptionDetailsController> {
           return const Center(child: CircularProgressIndicator());
         }
 
+        if (controller.isPaymentProcessing.value) {
+          return const Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(),
+                SizedBox(height: 16),
+                Text('Processing payment...'),
+                SizedBox(height: 8),
+                Text('Please do not close this screen',
+                    style: TextStyle(fontSize: 12)),
+              ],
+            ),
+          );
+        }
+
+        if (controller.isPaymentVerifying.value) {
+          return const Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(),
+                SizedBox(height: 16),
+                Text('Verifying payment...'),
+                SizedBox(height: 8),
+                Text('Please wait while we confirm your payment',
+                    style: TextStyle(fontSize: 12)),
+              ],
+            ),
+          );
+        }
+
         final plan = controller.selectedPlan.value;
         if (plan == null) {
           return const Center(child: Text('No plan selected'));

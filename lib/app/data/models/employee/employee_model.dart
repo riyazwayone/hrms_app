@@ -27,6 +27,10 @@ sealed class EmployeeModel with _$EmployeeModel {
     @Default('') String shopContactNumber,
     @Default('') String shopAddress,
     @Default('') String description,
+    @Default('') String punchInDays,
+    @Default('') String punchInPercentage,
+    @JsonKey(fromJson: AppUtils.anyToDuration) Duration? inTime,
+    @JsonKey(fromJson: AppUtils.anyToDuration) Duration? outTime,
   }) = _EmployeeModel;
 
   factory EmployeeModel.fromJson(Map<String, dynamic> json) =>

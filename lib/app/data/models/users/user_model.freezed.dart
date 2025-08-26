@@ -18,7 +18,7 @@ mixin _$UserModel {
   int get id;
   String get name;
   String get email;
-  String get profileImage;
+  String? get profileImage;
   String get phoneNumber;
   String get salary;
   String get shiftType;
@@ -105,7 +105,7 @@ abstract mixin class $UserModelCopyWith<$Res> {
       {int id,
       String name,
       String email,
-      String profileImage,
+      String? profileImage,
       String phoneNumber,
       String salary,
       String shiftType,
@@ -136,7 +136,7 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
     Object? id = null,
     Object? name = null,
     Object? email = null,
-    Object? profileImage = null,
+    Object? profileImage = freezed,
     Object? phoneNumber = null,
     Object? salary = null,
     Object? shiftType = null,
@@ -162,10 +162,10 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
           ? _self.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      profileImage: null == profileImage
+      profileImage: freezed == profileImage
           ? _self.profileImage
           : profileImage // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       phoneNumber: null == phoneNumber
           ? _self.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
@@ -235,7 +235,7 @@ class _UserModel implements UserModel {
       {required this.id,
       this.name = "Unknown",
       this.email = "",
-      this.profileImage = "",
+      this.profileImage,
       this.phoneNumber = "",
       this.salary = "",
       this.shiftType = "",
@@ -259,8 +259,7 @@ class _UserModel implements UserModel {
   @JsonKey()
   final String email;
   @override
-  @JsonKey()
-  final String profileImage;
+  final String? profileImage;
   @override
   @JsonKey()
   final String phoneNumber;
@@ -375,7 +374,7 @@ abstract mixin class _$UserModelCopyWith<$Res>
       {int id,
       String name,
       String email,
-      String profileImage,
+      String? profileImage,
       String phoneNumber,
       String salary,
       String shiftType,
@@ -407,7 +406,7 @@ class __$UserModelCopyWithImpl<$Res> implements _$UserModelCopyWith<$Res> {
     Object? id = null,
     Object? name = null,
     Object? email = null,
-    Object? profileImage = null,
+    Object? profileImage = freezed,
     Object? phoneNumber = null,
     Object? salary = null,
     Object? shiftType = null,
@@ -433,10 +432,10 @@ class __$UserModelCopyWithImpl<$Res> implements _$UserModelCopyWith<$Res> {
           ? _self.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      profileImage: null == profileImage
+      profileImage: freezed == profileImage
           ? _self.profileImage
           : profileImage // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       phoneNumber: null == phoneNumber
           ? _self.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable

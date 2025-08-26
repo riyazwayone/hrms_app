@@ -5,7 +5,9 @@ import 'package:get/get.dart';
 import 'package:hrms_app/app/core/utils/enums.dart';
 import 'package:hrms_app/app/core/utils/extensions/widget_rols.dart';
 import 'package:hrms_app/app/data/models/employee/employee_model.dart';
+import 'package:hrms_app/app/data/models/shop/shop_model.dart';
 import 'package:hrms_app/app/data/repositories/__employee.dart';
+import 'package:hrms_app/app/modules/employee/all_employees/all_employees_controller.dart';
 import 'package:hrms_app/app/modules/shop/shop_list/shop_list_controller.dart';
 import 'package:hrms_app/service_locator.dart';
 import 'package:image_picker/image_picker.dart';
@@ -30,7 +32,8 @@ class CreateEmployeeController extends GetxController {
 
   // Observable variables
   final RxString selectedDesignation = 'employee'.obs;
-  final RxString selectedShop = ''.obs;
+  final selectedHr = Rx<EmployeeModel?>(null);
+  final selectedShop = Rx<ShopModel?>(null);
   final RxString selectedEmploymentType = 'full-time'.obs;
   final RxString selectedShiftType = 'day'.obs;
   final RxString shiftTiming = '9:00 AM - 6:00 PM'.obs;
@@ -59,7 +62,18 @@ class CreateEmployeeController extends GetxController {
   final shopListController = Get.isRegistered<ShopListController>()
       ? Get.find<ShopListController>()
       : null;
+  final allEmployeesController = Get.isRegistered<AllEmployeesController>()
+      ? Get.find<AllEmployeesController>()
+      : null;
+
   final List<String> shiftTypeOptions = ['day', 'night', 'rotating'];
+
+  List<EmployeeModel> getHrList() {
+    return allEmployeesController?.employees
+            .where((employee) => employee.designation == 'hr')
+            .toList() ??
+        [];
+  }
 
   // Pick image from gallery
   Future<void> pickImageFromGallery() async {
@@ -132,6 +146,14 @@ class CreateEmployeeController extends GetxController {
     }
   }
 
+  // Update selected designation
+  void updateHr(String? value) {
+    if (value != null) {
+      final employee = getHrList().firstWhere((e) => e.employeeName == value);
+      selectedHr.value = employee;
+    }
+  }
+
   // Update selected shop
   void updateShop(String? value) {
     shopId.value = shopListController?.shops
@@ -139,7 +161,8 @@ class CreateEmployeeController extends GetxController {
             .id ??
         0;
     if (value != null) {
-      selectedShop.value = value;
+      selectedShop.value = shopListController?.shops
+          .firstWhere((shop) => shop.shopName == value);
     }
   }
 
@@ -178,6 +201,8 @@ class CreateEmployeeController extends GetxController {
       return;
     }
 
+    selectedShop.value ??= shopListController!.shops.first;
+    selectedHr.value ??= getHrList().isNotEmpty ? getHrList().first : null;
     try {
       isLoading.value = true;
 
@@ -196,14 +221,23 @@ class CreateEmployeeController extends GetxController {
       );
       final user = sl<UserService>().getCurrentUserSync();
       if (user!.role == UserRole.hr) {
-        employee = employee.copyWith(recruiterId: user.id);
+        employee = employee.copyWith(recruiterId: user.id, shopId: user.shopId);
       }
       if (user.role == UserRole.admin) {
-        employee =
-            employee.copyWith(recruiterId: user.id, shopId: shopId.value);
-      }
-      if (selectedShop.value.isEmpty) {
-        employee = employee.copyWith(shopId: user.shopId);
+        if (selectedDesignation.value != "hr" && selectedHr.value == null) {
+          Fluttertoast.showToast(msg: "Please select HR");
+          return;
+        }
+
+        final shop = shopListController?.shops
+            .firstWhere((shop) => shop.id == selectedShop.value?.id);
+        if (shop == null) {
+          Fluttertoast.showToast(msg: "Please select a valid shop");
+          return;
+        }
+
+        employee = employee.copyWith(
+            recruiterId: selectedHr.value?.id ?? 0, shopId: shop.id!);
       }
 
       // Call repository to create employee
@@ -221,15 +255,11 @@ class CreateEmployeeController extends GetxController {
 
       // Navigate back
 
-      Get.back(canPop: true, closeOverlays: false, result: true);
+      // Get.back(canPop: true, closeOverlays: false, result: true);
     } catch (e, stack) {
       _logger.e('Error creating employee: $e');
       _logger.e('Stack trace: $stack');
-      Get.snackbar(
-        'Error',
-        'Failed to create employee: ${e.toString()}',
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      Fluttertoast.showToast(msg: 'Failed to create employee: ${e.toString()}');
     } finally {
       isLoading.value = false;
     }
