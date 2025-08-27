@@ -6,7 +6,8 @@ part of 'task_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_TaskModel _$TaskModelFromJson(Map<String, dynamic> json) => _TaskModel(
+_$TaskModelImpl _$$TaskModelImplFromJson(Map<String, dynamic> json) =>
+    _$TaskModelImpl(
       id: (json['id'] as num?)?.toInt(),
       taskTitle: json['task_title'] as String? ?? "",
       department: json['department'] as String? ?? "",
@@ -22,7 +23,7 @@ _TaskModel _$TaskModelFromJson(Map<String, dynamic> json) => _TaskModel(
       createdAt: AppUtils.anyToDateTime(json['created_at']),
     );
 
-Map<String, dynamic> _$TaskModelToJson(_TaskModel instance) =>
+Map<String, dynamic> _$$TaskModelImplToJson(_$TaskModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'task_title': instance.taskTitle,

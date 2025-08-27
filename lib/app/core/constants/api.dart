@@ -1,5 +1,5 @@
 class Api {
-  static const baseUrl = 'http://192.168.1.55/hrms';
+  static const baseUrl = 'https://rotaexpert.wayone.ae';
 
   // Employee || HR Auth
   static const employeeLoginApi = '$baseUrl/employee_login.php';
@@ -21,6 +21,7 @@ class Api {
       '$baseUrl/attendance.php'; // Same endpoint with different payload
   static const attendanceHistoryApi = '$baseUrl/attendance_history.php';
   static const attendanceDetailsApi = '$baseUrl/attendance_details.php';
+  static const getAttendanceApi = '$baseUrl/get_attendance.php';
   static const employeeHomeApi = '$baseUrl/home_screen.php';
   static const checkAuthApi = '$baseUrl/check_auth.php';
 

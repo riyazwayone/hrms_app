@@ -24,7 +24,10 @@ abstract class AppRoutes {
   // Employee routes
   static const String shopEmployees = '/shop-employees';
   static const String allEmployees = '/all-employees';
-  static const String employeeProfile = '/employee-profile'; // Main app routes
+  static const String employeeProfile = '/employee-profile';
+
+  // Debug routes
+  static const String socketDebug = '/socket-debug'; // Main app routes
   static const String home = '/home';
   static const String dashboard = '/dashboard';
 
@@ -39,6 +42,8 @@ abstract class AppRoutes {
   static const String employeeDetails = '/employee-details';
   static const String addEmployee = '/add-employee';
   static const String attendance = '/attendance';
+  static const String employeeAttendanceDetails =
+      '/employee-attendance-details';
   static const String leave = '/leave';
   static const String leaveManagement = '/leave-management';
   static const String payroll = '/payroll';
@@ -56,6 +61,11 @@ abstract class AppRoutes {
   static const String createTask = '/create-task';
   static const String taskList = '/task-list';
   static const String taskDetails = '/task-details';
+
+  // Chat routes
+  static const String chatHome = '/chat-home';
+  static const String chatUserList = '/chat-user-list';
+  static const String chatConversation = '/chat-conversation';
 
   // Common routes
   static const String notifications = '/notifications';

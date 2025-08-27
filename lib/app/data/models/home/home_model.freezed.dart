@@ -1,4 +1,3 @@
-// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,49 +9,34 @@ part of 'home_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+
+HomeModel _$HomeModelFromJson(Map<String, dynamic> json) {
+  return _HomeModel.fromJson(json);
+}
 
 /// @nodoc
 mixin _$HomeModel {
-  AttendanceModel? get attendance;
-  List<EmployeeModel> get employees;
+  AttendanceModel? get attendance => throw _privateConstructorUsedError;
+  List<EmployeeModel> get employees => throw _privateConstructorUsedError;
+
+  /// Serializes this HomeModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of HomeModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
   $HomeModelCopyWith<HomeModel> get copyWith =>
-      _$HomeModelCopyWithImpl<HomeModel>(this as HomeModel, _$identity);
-
-  /// Serializes this HomeModel to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is HomeModel &&
-            (identical(other.attendance, attendance) ||
-                other.attendance == attendance) &&
-            const DeepCollectionEquality().equals(other.employees, employees));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, attendance, const DeepCollectionEquality().hash(employees));
-
-  @override
-  String toString() {
-    return 'HomeModel(attendance: $attendance, employees: $employees)';
-  }
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $HomeModelCopyWith<$Res> {
-  factory $HomeModelCopyWith(HomeModel value, $Res Function(HomeModel) _then) =
-      _$HomeModelCopyWithImpl;
+abstract class $HomeModelCopyWith<$Res> {
+  factory $HomeModelCopyWith(HomeModel value, $Res Function(HomeModel) then) =
+      _$HomeModelCopyWithImpl<$Res, HomeModel>;
   @useResult
   $Res call({AttendanceModel? attendance, List<EmployeeModel> employees});
 
@@ -60,11 +44,14 @@ abstract mixin class $HomeModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$HomeModelCopyWithImpl<$Res> implements $HomeModelCopyWith<$Res> {
-  _$HomeModelCopyWithImpl(this._self, this._then);
+class _$HomeModelCopyWithImpl<$Res, $Val extends HomeModel>
+    implements $HomeModelCopyWith<$Res> {
+  _$HomeModelCopyWithImpl(this._value, this._then);
 
-  final HomeModel _self;
-  final $Res Function(HomeModel) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of HomeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -74,16 +61,16 @@ class _$HomeModelCopyWithImpl<$Res> implements $HomeModelCopyWith<$Res> {
     Object? attendance = freezed,
     Object? employees = null,
   }) {
-    return _then(_self.copyWith(
+    return _then(_value.copyWith(
       attendance: freezed == attendance
-          ? _self.attendance
+          ? _value.attendance
           : attendance // ignore: cast_nullable_to_non_nullable
               as AttendanceModel?,
       employees: null == employees
-          ? _self.employees
+          ? _value.employees
           : employees // ignore: cast_nullable_to_non_nullable
               as List<EmployeeModel>,
-    ));
+    ) as $Val);
   }
 
   /// Create a copy of HomeModel
@@ -91,23 +78,68 @@ class _$HomeModelCopyWithImpl<$Res> implements $HomeModelCopyWith<$Res> {
   @override
   @pragma('vm:prefer-inline')
   $AttendanceModelCopyWith<$Res>? get attendance {
-    if (_self.attendance == null) {
+    if (_value.attendance == null) {
       return null;
     }
 
-    return $AttendanceModelCopyWith<$Res>(_self.attendance!, (value) {
-      return _then(_self.copyWith(attendance: value));
+    return $AttendanceModelCopyWith<$Res>(_value.attendance!, (value) {
+      return _then(_value.copyWith(attendance: value) as $Val);
     });
   }
 }
 
 /// @nodoc
+abstract class _$$HomeModelImplCopyWith<$Res>
+    implements $HomeModelCopyWith<$Res> {
+  factory _$$HomeModelImplCopyWith(
+          _$HomeModelImpl value, $Res Function(_$HomeModelImpl) then) =
+      __$$HomeModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({AttendanceModel? attendance, List<EmployeeModel> employees});
+
+  @override
+  $AttendanceModelCopyWith<$Res>? get attendance;
+}
+
+/// @nodoc
+class __$$HomeModelImplCopyWithImpl<$Res>
+    extends _$HomeModelCopyWithImpl<$Res, _$HomeModelImpl>
+    implements _$$HomeModelImplCopyWith<$Res> {
+  __$$HomeModelImplCopyWithImpl(
+      _$HomeModelImpl _value, $Res Function(_$HomeModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of HomeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? attendance = freezed,
+    Object? employees = null,
+  }) {
+    return _then(_$HomeModelImpl(
+      attendance: freezed == attendance
+          ? _value.attendance
+          : attendance // ignore: cast_nullable_to_non_nullable
+              as AttendanceModel?,
+      employees: null == employees
+          ? _value._employees
+          : employees // ignore: cast_nullable_to_non_nullable
+              as List<EmployeeModel>,
+    ));
+  }
+}
+
+/// @nodoc
 @JsonSerializable()
-class _HomeModel implements HomeModel {
-  _HomeModel({this.attendance, final List<EmployeeModel> employees = const []})
+class _$HomeModelImpl implements _HomeModel {
+  _$HomeModelImpl(
+      {this.attendance, final List<EmployeeModel> employees = const []})
       : _employees = employees;
-  factory _HomeModel.fromJson(Map<String, dynamic> json) =>
-      _$HomeModelFromJson(json);
+
+  factory _$HomeModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$HomeModelImplFromJson(json);
 
   @override
   final AttendanceModel? attendance;
@@ -120,26 +152,16 @@ class _HomeModel implements HomeModel {
     return EqualUnmodifiableListView(_employees);
   }
 
-  /// Create a copy of HomeModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$HomeModelCopyWith<_HomeModel> get copyWith =>
-      __$HomeModelCopyWithImpl<_HomeModel>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$HomeModelToJson(
-      this,
-    );
+  String toString() {
+    return 'HomeModel(attendance: $attendance, employees: $employees)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _HomeModel &&
+            other is _$HomeModelImpl &&
             (identical(other.attendance, attendance) ||
                 other.attendance == attendance) &&
             const DeepCollectionEquality()
@@ -151,66 +173,39 @@ class _HomeModel implements HomeModel {
   int get hashCode => Object.hash(
       runtimeType, attendance, const DeepCollectionEquality().hash(_employees));
 
+  /// Create a copy of HomeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'HomeModel(attendance: $attendance, employees: $employees)';
+  @pragma('vm:prefer-inline')
+  _$$HomeModelImplCopyWith<_$HomeModelImpl> get copyWith =>
+      __$$HomeModelImplCopyWithImpl<_$HomeModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$HomeModelImplToJson(
+      this,
+    );
   }
 }
 
-/// @nodoc
-abstract mixin class _$HomeModelCopyWith<$Res>
-    implements $HomeModelCopyWith<$Res> {
-  factory _$HomeModelCopyWith(
-          _HomeModel value, $Res Function(_HomeModel) _then) =
-      __$HomeModelCopyWithImpl;
-  @override
-  @useResult
-  $Res call({AttendanceModel? attendance, List<EmployeeModel> employees});
+abstract class _HomeModel implements HomeModel {
+  factory _HomeModel(
+      {final AttendanceModel? attendance,
+      final List<EmployeeModel> employees}) = _$HomeModelImpl;
+
+  factory _HomeModel.fromJson(Map<String, dynamic> json) =
+      _$HomeModelImpl.fromJson;
 
   @override
-  $AttendanceModelCopyWith<$Res>? get attendance;
-}
-
-/// @nodoc
-class __$HomeModelCopyWithImpl<$Res> implements _$HomeModelCopyWith<$Res> {
-  __$HomeModelCopyWithImpl(this._self, this._then);
-
-  final _HomeModel _self;
-  final $Res Function(_HomeModel) _then;
+  AttendanceModel? get attendance;
+  @override
+  List<EmployeeModel> get employees;
 
   /// Create a copy of HomeModel
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? attendance = freezed,
-    Object? employees = null,
-  }) {
-    return _then(_HomeModel(
-      attendance: freezed == attendance
-          ? _self.attendance
-          : attendance // ignore: cast_nullable_to_non_nullable
-              as AttendanceModel?,
-      employees: null == employees
-          ? _self._employees
-          : employees // ignore: cast_nullable_to_non_nullable
-              as List<EmployeeModel>,
-    ));
-  }
-
-  /// Create a copy of HomeModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $AttendanceModelCopyWith<$Res>? get attendance {
-    if (_self.attendance == null) {
-      return null;
-    }
-
-    return $AttendanceModelCopyWith<$Res>(_self.attendance!, (value) {
-      return _then(_self.copyWith(attendance: value));
-    });
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$HomeModelImplCopyWith<_$HomeModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
-
-// dart format on

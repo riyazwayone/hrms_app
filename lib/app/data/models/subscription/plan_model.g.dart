@@ -6,7 +6,8 @@ part of 'plan_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_PlanModel _$PlanModelFromJson(Map<String, dynamic> json) => _PlanModel(
+_$PlanModelImpl _$$PlanModelImplFromJson(Map<String, dynamic> json) =>
+    _$PlanModelImpl(
       id: (json['id'] as num?)?.toInt(),
       planName: json['planName'] as String,
       price: json['price'] == null ? 0.0 : AppUtils.anyToDouble(json['price']),
@@ -18,7 +19,7 @@ _PlanModel _$PlanModelFromJson(Map<String, dynamic> json) => _PlanModel(
       createdAt: AppUtils.anyToDateTime(json['createdAt']),
     );
 
-Map<String, dynamic> _$PlanModelToJson(_PlanModel instance) =>
+Map<String, dynamic> _$$PlanModelImplToJson(_$PlanModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'planName': instance.planName,

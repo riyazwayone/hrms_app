@@ -6,8 +6,8 @@ part of 'employee_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_EmployeeModel _$EmployeeModelFromJson(Map<String, dynamic> json) =>
-    _EmployeeModel(
+_$EmployeeModelImpl _$$EmployeeModelImplFromJson(Map<String, dynamic> json) =>
+    _$EmployeeModelImpl(
       id: (json['id'] as num?)?.toInt() ?? 0,
       recruiterId: (json['recruiter_id'] as num?)?.toInt() ?? 0,
       shopId: (json['shop_id'] as num?)?.toInt() ?? 0,
@@ -32,7 +32,7 @@ _EmployeeModel _$EmployeeModelFromJson(Map<String, dynamic> json) =>
       outTime: AppUtils.anyToDuration(json['out_time']),
     );
 
-Map<String, dynamic> _$EmployeeModelToJson(_EmployeeModel instance) =>
+Map<String, dynamic> _$$EmployeeModelImplToJson(_$EmployeeModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'recruiter_id': instance.recruiterId,

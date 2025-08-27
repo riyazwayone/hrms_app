@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:hrms_app/app/core/utils/extensions/widget_rols.dart';
 import 'package:hrms_app/app/data/services/user_service.dart';
+import 'package:hrms_app/app/routes/app_routes.dart';
 import 'package:hrms_app/service_locator.dart';
 import '../../core/constants/app_constants.dart';
 import '../../core/theme/app_colors.dart';
@@ -19,6 +20,14 @@ class LoginView extends GetView<LoginController> {
 
     return Scaffold(
       backgroundColor: AppColors.background,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: AppColors.primary),
+          onPressed: () => Get.offAllNamed(AppRoutes.onboarding),
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24.0),
@@ -34,7 +43,7 @@ class LoginView extends GetView<LoginController> {
                     Center(
                       child: Container(
                         width: 200,
-                        height: 200,
+                        height: 150,
                         decoration: const BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage(AppConstants.logo)),

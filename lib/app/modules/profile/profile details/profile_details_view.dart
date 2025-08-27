@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hrms_app/app/core/utils/extensions/widget_rols.dart';
 import 'package:hrms_app/app/data/services/user_service.dart';
 import 'package:hrms_app/app/modules/profile/profile_controller.dart';
 import 'package:hrms_app/service_locator.dart';
@@ -13,8 +14,7 @@ class ProfileDetailsView extends GetView<ProfileController> {
   @override
   Widget build(BuildContext context) {
     // Get data from either provided employee, user, or current logged in user
-    final userData = sl<UserService>().getCurrentUserSync()!;
-    log(userData.toJson().toString());
+
     return Scaffold(
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
@@ -47,16 +47,17 @@ class ProfileDetailsView extends GetView<ProfileController> {
                   Center(
                     child: CircleAvatar(
                       radius: 50,
-                      backgroundImage: userData.profileImage != null
-                          ? CachedNetworkImageProvider(
-                              userData.profileImage!,
-                              errorListener: (p0) {
-                                print("User profile image not found");
-                              },
-                            )
-                          : const AssetImage(
-                                  'assets/images/profile_placeholder.png')
-                              as ImageProvider,
+                      backgroundImage:
+                          controller.userModel.value?.profileImage != null
+                              ? CachedNetworkImageProvider(
+                                  controller.userModel.value!.profileImage!,
+                                  errorListener: (p0) {
+                                    print("User profile image not found");
+                                  },
+                                )
+                              : const AssetImage(
+                                      'assets/images/profile_placeholder.webp')
+                                  as ImageProvider,
                       backgroundColor: Colors.grey[200],
                     ),
                   ),
@@ -64,7 +65,7 @@ class ProfileDetailsView extends GetView<ProfileController> {
 
                   // Employee ID
                   Text(
-                    'Employee Id - ${userData.id.toString().padLeft(4, '0')}',
+                    'Employee Id - ${controller.userModel.value?.id.toString().padLeft(4, '0')}',
                     style: const TextStyle(
                       color: Colors.grey,
                       fontSize: 14,
@@ -74,7 +75,7 @@ class ProfileDetailsView extends GetView<ProfileController> {
 
                   // Employee Name
                   Text(
-                    userData.name,
+                    controller.userModel.value?.name ?? 'No Name',
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 20,
@@ -102,18 +103,39 @@ class ProfileDetailsView extends GetView<ProfileController> {
               ),
               child: Column(
                 children: [
-                  _buildInfoRow('Department', 'Human Resources'),
+                  _buildInfoRow('Position',
+                      controller.userModel.value?.role.name ?? 'No Position'),
                   _divider(),
-                  _buildInfoRow('Position', userData.designation),
-                  _divider(),
-                  _buildInfoRow('Salary', '€ ${userData.salary}'),
-                  _divider(),
-                  _buildInfoRow('Shift', userData.shiftType),
-                  _divider(),
-                  _buildInfoRow('Employment Type', 'Regular'),
-                  _divider(),
-                  _buildInfoRow('Head Quarter', 'Germany'),
-                ],
+                  _buildInfoRow(
+                          'Plan Name',
+                          controller.userModel.value?.plan?.planName
+                                  .toUpperCase() ??
+                              "Unknown")
+                      .forAdmin(),
+                  Column(
+                    children: [
+                      _divider(),
+                      _buildInfoRow(
+                          'Department',
+                          controller.userModel.value?.designation
+                                  .toUpperCase() ??
+                              "Unknown"),
+                      _divider(),
+                      _buildInfoRow('Salary',
+                          '₹ ${controller.userModel.value?.salary ?? 0}'),
+                      _divider(),
+                      _buildInfoRow(
+                          'Shift',
+                          controller.userModel.value?.shiftTiming ??
+                              'No Shift'),
+                      _divider(),
+                      _buildInfoRow(
+                          'Employment Type',
+                          controller.userModel.value?.shiftType ??
+                              'No Employment Type')
+                    ],
+                  ).notForAdmin()
+                ].whereType<Widget>().toList(),
               ),
             ),
           ],

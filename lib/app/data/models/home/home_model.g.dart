@@ -6,7 +6,8 @@ part of 'home_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_HomeModel _$HomeModelFromJson(Map<String, dynamic> json) => _HomeModel(
+_$HomeModelImpl _$$HomeModelImplFromJson(Map<String, dynamic> json) =>
+    _$HomeModelImpl(
       attendance: json['attendance'] == null
           ? null
           : AttendanceModel.fromJson(
@@ -17,7 +18,7 @@ _HomeModel _$HomeModelFromJson(Map<String, dynamic> json) => _HomeModel(
           const [],
     );
 
-Map<String, dynamic> _$HomeModelToJson(_HomeModel instance) =>
+Map<String, dynamic> _$$HomeModelImplToJson(_$HomeModelImpl instance) =>
     <String, dynamic>{
       'attendance': instance.attendance,
       'employees': instance.employees,

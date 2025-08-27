@@ -2,9 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:hrms_app/app/data/models/users/user_model.dart';
 
 import '../../../core/constants/app_constants.dart';
+import '../../../core/theme/app_gaps.dart';
+import '../../../routes/app_routes.dart';
 
 class SliverAppBarWidget extends StatelessWidget {
   final UserModel user;
@@ -75,23 +78,42 @@ class SliverAppBarWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                Stack(
+                Row(
                   children: [
-                    SvgPicture.asset(AppConstants.bellSvg),
-                    Positioned(
-                      top: 0,
-                      right: 0,
-                      child: Container(
-                        width: 10,
-                        height: 10,
-                        decoration: const BoxDecoration(
-                          color: Colors.red,
-                          shape: BoxShape.circle,
+                    Stack(
+                      children: [
+                        Icon(
+                          Icons.notifications_outlined,
+                          size: 30,
+                          color: Colors.black54,
                         ),
-                      ),
+                        Positioned(
+                          top: 0,
+                          right: 0,
+                          child: Container(
+                            width: 10,
+                            height: 10,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.red,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
+                    // Gap(AppGaps.small),
+                    // IconButton(
+                    //   onPressed: () {
+                    //     Get.toNamed(AppRoutes.chatHome);
+                    //   },
+                    //   icon: Icon(
+                    //     Icons.message_outlined,
+                    //     size: 30,
+                    //   ),
+                    //   color: Colors.black54,
+                    // ),
                   ],
-                ),
+                )
               ],
             ),
             Gap(20),

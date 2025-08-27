@@ -6,6 +6,12 @@ import 'package:hrms_app/app/core/theme/app_text_styles.dart';
 import 'package:hrms_app/app/core/utils/extensions/duration_to_ago.dart';
 import 'package:hrms_app/app/data/models/employee/employee_model.dart';
 import 'package:hrms_app/app/modules/employee/employee_profile/employee_profile_controller.dart';
+import 'package:hrms_app/app/data/services/chat_socket_service.dart';
+import 'package:hrms_app/service_locator.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+
+import '../../attendance/attendance_list_view.dart';
+import '../../chat/chat_conversation_screen.dart';
 
 class EmployeeProfileView extends GetView<EmployeeProfileController> {
   final EmployeeModel employee;
@@ -37,10 +43,23 @@ class EmployeeProfileView extends GetView<EmployeeProfileController> {
           children: [
             _buildProfileHeader(),
             _buildInfoCard(),
+            Container(
+              margin:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              child: OutlinedButton(
+                onPressed: () {
+                  Get.to(() => AttendanceListView(
+                        employeeId: employee.id,
+                        employeeName: employee.employeeName,
+                      ));
+                },
+                child: Text('View Attendance'),
+              ),
+            ),
             _buildAttendanceInfo(),
             _buildPerformanceInfo(),
-            if (employee.designation.toLowerCase() == 'employee')
-              _buildReportingManager(),
+            // if (employee.designation.toLowerCase() == 'employee')
+            //   _buildReportingManager(),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton.icon(
@@ -128,9 +147,44 @@ class EmployeeProfileView extends GetView<EmployeeProfileController> {
           // Contact buttons
           Row(
             children: [
-              _buildIconButton(Icons.phone, Colors.black),
+              _buildIconButton(Icons.phone, Colors.green, () {
+                launchUrlString('tel:${employee.phoneNumber}');
+              }),
               const SizedBox(width: 12),
-              _buildIconButton(Icons.message, Colors.black),
+              _buildIconButton(Icons.message, Colors.blue, () {
+                final chatService = sl<ChatSocketService>();
+                // Check if the current user can message this employee
+                if (!chatService
+                    .canMessageUser(employee.designation.toString())) {
+                  Get.snackbar(
+                    'Permission Denied',
+                    'You do not have permission to message this user',
+                    snackPosition: SnackPosition.BOTTOM,
+                    backgroundColor: Colors.red.withOpacity(0.8),
+                    colorText: Colors.white,
+                  );
+                  return;
+                }
+
+                // Ensure chat service is connected before navigating
+                if (!chatService.isConnected.value) {
+                  chatService.reconnect().then((_) {
+                    // Navigate after reconnection attempt
+                    Get.to(() => ChatConversationScreen(
+                          receiverId: employee.id.toString(),
+                          receiverName: employee.employeeName,
+                          receiverAvatar: employee.profileImage,
+                        ));
+                  });
+                } else {
+                  // Navigate directly if already connected
+                  Get.to(() => ChatConversationScreen(
+                        receiverId: employee.id.toString(),
+                        receiverName: employee.employeeName,
+                        receiverAvatar: employee.profileImage,
+                      ));
+                }
+              }),
             ],
           ),
         ],
@@ -169,26 +223,37 @@ class EmployeeProfileView extends GetView<EmployeeProfileController> {
 
   Widget _buildAttendanceInfo() {
     // Mock data for attendance stats
-    return Container(
-      margin: const EdgeInsets.only(top: 16),
-      child: Row(
-        children: [
-          Expanded(
-            child: _buildAttendanceCard(
-              employee.inTime?.toAmPmString() ?? "Not Yet",
-              'Punch In',
-              Icons.login,
+    return GestureDetector(
+      onTap: () {
+        Get.toNamed(
+          '/employee-attendance-details',
+          arguments: {
+            'employeeId': employee.id,
+            'employeeName': employee.employeeName,
+          },
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.only(top: 16),
+        child: Row(
+          children: [
+            Expanded(
+              child: _buildAttendanceCard(
+                employee.inTime?.toAmPmString() ?? "Not Yet",
+                'Punch In',
+                Icons.login,
+              ),
             ),
-          ),
-          Expanded(
-            child: _buildAttendanceCard(
-              employee.outTime?.toAmPmString() ?? "Not Yet",
-              'Punch Out',
-              Icons.logout,
-              isActive: false,
+            Expanded(
+              child: _buildAttendanceCard(
+                employee.outTime?.toAmPmString() ?? "Not Yet",
+                'Punch Out',
+                Icons.logout,
+                isActive: false,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -257,9 +322,11 @@ class EmployeeProfileView extends GetView<EmployeeProfileController> {
           // Contact buttons
           Row(
             children: [
-              _buildIconButton(Icons.phone, Colors.green),
+              _buildIconButton(Icons.phone, Colors.green, () {
+                launchUrlString('tel:${employee.phoneNumber}');
+              }),
               const SizedBox(width: 12),
-              _buildIconButton(Icons.message, Colors.amber),
+              _buildIconButton(Icons.message, Colors.amber, () {}),
             ],
           ),
         ],
@@ -384,17 +451,20 @@ class EmployeeProfileView extends GetView<EmployeeProfileController> {
     return const Divider(height: 1, thickness: 0.5);
   }
 
-  Widget _buildIconButton(IconData icon, Color color) {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: color.withOpacity(0.1),
-      ),
-      child: Icon(
-        icon,
-        color: color,
-        size: 20,
+  Widget _buildIconButton(IconData icon, Color color, VoidCallback onPressed) {
+    return InkWell(
+      onTap: onPressed,
+      child: Container(
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: color.withOpacity(0.1),
+        ),
+        child: Icon(
+          icon,
+          color: color,
+          size: 20,
+        ),
       ),
     );
   }

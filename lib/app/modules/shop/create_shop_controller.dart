@@ -58,6 +58,8 @@ class CreateShopController extends GetxController {
           description: descriptionController.text.trim(),
         );
 
+        _logger.d('Creating shop: ${shop.toJson()}');
+
         final createdShop = await sl<ShopRepository>().createShop(shop);
 
         _logger.d('Shop created successfully: ${createdShop.toJson()}');

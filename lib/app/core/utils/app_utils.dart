@@ -31,6 +31,11 @@ class AppUtils {
     );
   }
 
+  static anyToString(dynamic text) {
+    if (text == null) return '';
+    return text.toString();
+  }
+
   static anyToBool(dynamic text) {
     if (text is bool) return text;
 
@@ -255,6 +260,32 @@ class AppUtils {
       return DateTime.tryParse(value) ?? DateTime.now();
     }
     return DateTime.now();
+  }
+
+  static String getWeekdayShortName(DateTime date) {
+    const weekdays = [
+      'Mon',
+      'Tue',
+      'Wed',
+      'Thu',
+      'Fri',
+      'Sat',
+      'Sun',
+    ];
+    return weekdays[date.weekday - 1];
+  }
+
+  static String getWeekdayFullName(DateTime date) {
+    const weekdays = [
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday',
+    ];
+    return weekdays[date.weekday - 1];
   }
 
   static Duration? anyToDuration(dynamic value) {

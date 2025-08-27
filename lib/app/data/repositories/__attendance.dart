@@ -11,6 +11,8 @@ import '../services/user_service.dart';
 abstract class AttendanceRepository {
   Future<AttendanceModel> checkIn({String? coordinates});
   Future<AttendanceModel> checkOut({String? coordinates});
+  Future<List<AttendanceModel>> getAttendanceList(
+      {required String employeeId, String? month, String? year});
   Future<Map<String, dynamic>> getAttendanceHistory(
       {String? month, String? year});
   Future<Map<String, dynamic>> getAttendanceDetails({required String date});
@@ -145,6 +147,40 @@ class AttendanceRepositoryImpl extends GetConnect
       }
 
       return jsonDecode(response.bodyString ?? '{}');
+    } catch (e) {
+      _logger.e('Error fetching attendance details: $e');
+      throw Exception('Failed to fetch attendance details: ${e.toString()}');
+    }
+  }
+
+  @override
+  Future<List<AttendanceModel>> getAttendanceList(
+      {required String employeeId, String? month, String? year}) async {
+    try {
+      final headers = await sl<UserService>().getHeaders();
+
+      final response = await get(
+        Api.getAttendanceApi,
+        headers: headers,
+        query: {
+          'employee_id': employeeId,
+          'month': month,
+          'year': year,
+        },
+      );
+
+      _logger.d('Attendance details response: ${response.body}');
+
+      if (response.status.hasError) {
+        final errorMessage =
+            response.bodyString ?? 'Failed to fetch attendance details';
+        _logger.e('Get attendance details failed: $errorMessage');
+        throw Exception(errorMessage);
+      }
+
+      return (response.body['data'] as List)
+          .map((e) => AttendanceModel.fromJson(e))
+          .toList();
     } catch (e) {
       _logger.e('Error fetching attendance details: $e');
       throw Exception('Failed to fetch attendance details: ${e.toString()}');

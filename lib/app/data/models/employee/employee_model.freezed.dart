@@ -1,4 +1,3 @@
-// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,132 +9,58 @@ part of 'employee_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+
+EmployeeModel _$EmployeeModelFromJson(Map<String, dynamic> json) {
+  return _EmployeeModel.fromJson(json);
+}
 
 /// @nodoc
 mixin _$EmployeeModel {
-  int get id;
-  int get recruiterId;
-  int get shopId;
-  String get employeeName;
-  String get email;
-  String get phoneNumber;
-  String get profileImage;
-  String get salary;
-  String get shiftTiming;
-  String get shiftType;
-  String get employmentType;
-  String get designation;
-  String get password;
+  int get id => throw _privateConstructorUsedError;
+  int get recruiterId => throw _privateConstructorUsedError;
+  int get shopId => throw _privateConstructorUsedError;
+  String get employeeName => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  String get phoneNumber => throw _privateConstructorUsedError;
+  String get profileImage => throw _privateConstructorUsedError;
+  String get salary => throw _privateConstructorUsedError;
+  String get shiftTiming => throw _privateConstructorUsedError;
+  String get shiftType => throw _privateConstructorUsedError;
+  String get employmentType => throw _privateConstructorUsedError;
+  String get designation => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
   @JsonKey(fromJson: AppUtils.anyToDateTime)
-  DateTime? get createdAt;
-  String get shopName;
-  String get shopContactNumber;
-  String get shopAddress;
-  String get description;
-  String get punchInDays;
-  String get punchInPercentage;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  String get shopName => throw _privateConstructorUsedError;
+  String get shopContactNumber => throw _privateConstructorUsedError;
+  String get shopAddress => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  String get punchInDays => throw _privateConstructorUsedError;
+  String get punchInPercentage => throw _privateConstructorUsedError;
   @JsonKey(fromJson: AppUtils.anyToDuration)
-  Duration? get inTime;
+  Duration? get inTime => throw _privateConstructorUsedError;
   @JsonKey(fromJson: AppUtils.anyToDuration)
-  Duration? get outTime;
+  Duration? get outTime => throw _privateConstructorUsedError;
+
+  /// Serializes this EmployeeModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of EmployeeModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
   $EmployeeModelCopyWith<EmployeeModel> get copyWith =>
-      _$EmployeeModelCopyWithImpl<EmployeeModel>(
-          this as EmployeeModel, _$identity);
-
-  /// Serializes this EmployeeModel to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is EmployeeModel &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.recruiterId, recruiterId) ||
-                other.recruiterId == recruiterId) &&
-            (identical(other.shopId, shopId) || other.shopId == shopId) &&
-            (identical(other.employeeName, employeeName) ||
-                other.employeeName == employeeName) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.phoneNumber, phoneNumber) ||
-                other.phoneNumber == phoneNumber) &&
-            (identical(other.profileImage, profileImage) ||
-                other.profileImage == profileImage) &&
-            (identical(other.salary, salary) || other.salary == salary) &&
-            (identical(other.shiftTiming, shiftTiming) ||
-                other.shiftTiming == shiftTiming) &&
-            (identical(other.shiftType, shiftType) ||
-                other.shiftType == shiftType) &&
-            (identical(other.employmentType, employmentType) ||
-                other.employmentType == employmentType) &&
-            (identical(other.designation, designation) ||
-                other.designation == designation) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.shopName, shopName) ||
-                other.shopName == shopName) &&
-            (identical(other.shopContactNumber, shopContactNumber) ||
-                other.shopContactNumber == shopContactNumber) &&
-            (identical(other.shopAddress, shopAddress) ||
-                other.shopAddress == shopAddress) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.punchInDays, punchInDays) ||
-                other.punchInDays == punchInDays) &&
-            (identical(other.punchInPercentage, punchInPercentage) ||
-                other.punchInPercentage == punchInPercentage) &&
-            (identical(other.inTime, inTime) || other.inTime == inTime) &&
-            (identical(other.outTime, outTime) || other.outTime == outTime));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hashAll([
-        runtimeType,
-        id,
-        recruiterId,
-        shopId,
-        employeeName,
-        email,
-        phoneNumber,
-        profileImage,
-        salary,
-        shiftTiming,
-        shiftType,
-        employmentType,
-        designation,
-        password,
-        createdAt,
-        shopName,
-        shopContactNumber,
-        shopAddress,
-        description,
-        punchInDays,
-        punchInPercentage,
-        inTime,
-        outTime
-      ]);
-
-  @override
-  String toString() {
-    return 'EmployeeModel(id: $id, recruiterId: $recruiterId, shopId: $shopId, employeeName: $employeeName, email: $email, phoneNumber: $phoneNumber, profileImage: $profileImage, salary: $salary, shiftTiming: $shiftTiming, shiftType: $shiftType, employmentType: $employmentType, designation: $designation, password: $password, createdAt: $createdAt, shopName: $shopName, shopContactNumber: $shopContactNumber, shopAddress: $shopAddress, description: $description, punchInDays: $punchInDays, punchInPercentage: $punchInPercentage, inTime: $inTime, outTime: $outTime)';
-  }
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $EmployeeModelCopyWith<$Res> {
+abstract class $EmployeeModelCopyWith<$Res> {
   factory $EmployeeModelCopyWith(
-          EmployeeModel value, $Res Function(EmployeeModel) _then) =
-      _$EmployeeModelCopyWithImpl;
+          EmployeeModel value, $Res Function(EmployeeModel) then) =
+      _$EmployeeModelCopyWithImpl<$Res, EmployeeModel>;
   @useResult
   $Res call(
       {int id,
@@ -163,12 +88,14 @@ abstract mixin class $EmployeeModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$EmployeeModelCopyWithImpl<$Res>
+class _$EmployeeModelCopyWithImpl<$Res, $Val extends EmployeeModel>
     implements $EmployeeModelCopyWith<$Res> {
-  _$EmployeeModelCopyWithImpl(this._self, this._then);
+  _$EmployeeModelCopyWithImpl(this._value, this._then);
 
-  final EmployeeModel _self;
-  final $Res Function(EmployeeModel) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of EmployeeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -198,93 +125,255 @@ class _$EmployeeModelCopyWithImpl<$Res>
     Object? inTime = freezed,
     Object? outTime = freezed,
   }) {
-    return _then(_self.copyWith(
+    return _then(_value.copyWith(
       id: null == id
-          ? _self.id
+          ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
       recruiterId: null == recruiterId
-          ? _self.recruiterId
+          ? _value.recruiterId
           : recruiterId // ignore: cast_nullable_to_non_nullable
               as int,
       shopId: null == shopId
-          ? _self.shopId
+          ? _value.shopId
           : shopId // ignore: cast_nullable_to_non_nullable
               as int,
       employeeName: null == employeeName
-          ? _self.employeeName
+          ? _value.employeeName
           : employeeName // ignore: cast_nullable_to_non_nullable
               as String,
       email: null == email
-          ? _self.email
+          ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
       phoneNumber: null == phoneNumber
-          ? _self.phoneNumber
+          ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
       profileImage: null == profileImage
-          ? _self.profileImage
+          ? _value.profileImage
           : profileImage // ignore: cast_nullable_to_non_nullable
               as String,
       salary: null == salary
-          ? _self.salary
+          ? _value.salary
           : salary // ignore: cast_nullable_to_non_nullable
               as String,
       shiftTiming: null == shiftTiming
-          ? _self.shiftTiming
+          ? _value.shiftTiming
           : shiftTiming // ignore: cast_nullable_to_non_nullable
               as String,
       shiftType: null == shiftType
-          ? _self.shiftType
+          ? _value.shiftType
           : shiftType // ignore: cast_nullable_to_non_nullable
               as String,
       employmentType: null == employmentType
-          ? _self.employmentType
+          ? _value.employmentType
           : employmentType // ignore: cast_nullable_to_non_nullable
               as String,
       designation: null == designation
-          ? _self.designation
+          ? _value.designation
           : designation // ignore: cast_nullable_to_non_nullable
               as String,
       password: null == password
-          ? _self.password
+          ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
       createdAt: freezed == createdAt
-          ? _self.createdAt
+          ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       shopName: null == shopName
-          ? _self.shopName
+          ? _value.shopName
           : shopName // ignore: cast_nullable_to_non_nullable
               as String,
       shopContactNumber: null == shopContactNumber
-          ? _self.shopContactNumber
+          ? _value.shopContactNumber
           : shopContactNumber // ignore: cast_nullable_to_non_nullable
               as String,
       shopAddress: null == shopAddress
-          ? _self.shopAddress
+          ? _value.shopAddress
           : shopAddress // ignore: cast_nullable_to_non_nullable
               as String,
       description: null == description
-          ? _self.description
+          ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
       punchInDays: null == punchInDays
-          ? _self.punchInDays
+          ? _value.punchInDays
           : punchInDays // ignore: cast_nullable_to_non_nullable
               as String,
       punchInPercentage: null == punchInPercentage
-          ? _self.punchInPercentage
+          ? _value.punchInPercentage
           : punchInPercentage // ignore: cast_nullable_to_non_nullable
               as String,
       inTime: freezed == inTime
-          ? _self.inTime
+          ? _value.inTime
           : inTime // ignore: cast_nullable_to_non_nullable
               as Duration?,
       outTime: freezed == outTime
-          ? _self.outTime
+          ? _value.outTime
+          : outTime // ignore: cast_nullable_to_non_nullable
+              as Duration?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$EmployeeModelImplCopyWith<$Res>
+    implements $EmployeeModelCopyWith<$Res> {
+  factory _$$EmployeeModelImplCopyWith(
+          _$EmployeeModelImpl value, $Res Function(_$EmployeeModelImpl) then) =
+      __$$EmployeeModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int id,
+      int recruiterId,
+      int shopId,
+      String employeeName,
+      String email,
+      String phoneNumber,
+      String profileImage,
+      String salary,
+      String shiftTiming,
+      String shiftType,
+      String employmentType,
+      String designation,
+      String password,
+      @JsonKey(fromJson: AppUtils.anyToDateTime) DateTime? createdAt,
+      String shopName,
+      String shopContactNumber,
+      String shopAddress,
+      String description,
+      String punchInDays,
+      String punchInPercentage,
+      @JsonKey(fromJson: AppUtils.anyToDuration) Duration? inTime,
+      @JsonKey(fromJson: AppUtils.anyToDuration) Duration? outTime});
+}
+
+/// @nodoc
+class __$$EmployeeModelImplCopyWithImpl<$Res>
+    extends _$EmployeeModelCopyWithImpl<$Res, _$EmployeeModelImpl>
+    implements _$$EmployeeModelImplCopyWith<$Res> {
+  __$$EmployeeModelImplCopyWithImpl(
+      _$EmployeeModelImpl _value, $Res Function(_$EmployeeModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of EmployeeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? recruiterId = null,
+    Object? shopId = null,
+    Object? employeeName = null,
+    Object? email = null,
+    Object? phoneNumber = null,
+    Object? profileImage = null,
+    Object? salary = null,
+    Object? shiftTiming = null,
+    Object? shiftType = null,
+    Object? employmentType = null,
+    Object? designation = null,
+    Object? password = null,
+    Object? createdAt = freezed,
+    Object? shopName = null,
+    Object? shopContactNumber = null,
+    Object? shopAddress = null,
+    Object? description = null,
+    Object? punchInDays = null,
+    Object? punchInPercentage = null,
+    Object? inTime = freezed,
+    Object? outTime = freezed,
+  }) {
+    return _then(_$EmployeeModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      recruiterId: null == recruiterId
+          ? _value.recruiterId
+          : recruiterId // ignore: cast_nullable_to_non_nullable
+              as int,
+      shopId: null == shopId
+          ? _value.shopId
+          : shopId // ignore: cast_nullable_to_non_nullable
+              as int,
+      employeeName: null == employeeName
+          ? _value.employeeName
+          : employeeName // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      phoneNumber: null == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      profileImage: null == profileImage
+          ? _value.profileImage
+          : profileImage // ignore: cast_nullable_to_non_nullable
+              as String,
+      salary: null == salary
+          ? _value.salary
+          : salary // ignore: cast_nullable_to_non_nullable
+              as String,
+      shiftTiming: null == shiftTiming
+          ? _value.shiftTiming
+          : shiftTiming // ignore: cast_nullable_to_non_nullable
+              as String,
+      shiftType: null == shiftType
+          ? _value.shiftType
+          : shiftType // ignore: cast_nullable_to_non_nullable
+              as String,
+      employmentType: null == employmentType
+          ? _value.employmentType
+          : employmentType // ignore: cast_nullable_to_non_nullable
+              as String,
+      designation: null == designation
+          ? _value.designation
+          : designation // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      shopName: null == shopName
+          ? _value.shopName
+          : shopName // ignore: cast_nullable_to_non_nullable
+              as String,
+      shopContactNumber: null == shopContactNumber
+          ? _value.shopContactNumber
+          : shopContactNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      shopAddress: null == shopAddress
+          ? _value.shopAddress
+          : shopAddress // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      punchInDays: null == punchInDays
+          ? _value.punchInDays
+          : punchInDays // ignore: cast_nullable_to_non_nullable
+              as String,
+      punchInPercentage: null == punchInPercentage
+          ? _value.punchInPercentage
+          : punchInPercentage // ignore: cast_nullable_to_non_nullable
+              as String,
+      inTime: freezed == inTime
+          ? _value.inTime
+          : inTime // ignore: cast_nullable_to_non_nullable
+              as Duration?,
+      outTime: freezed == outTime
+          ? _value.outTime
           : outTime // ignore: cast_nullable_to_non_nullable
               as Duration?,
     ));
@@ -294,8 +383,8 @@ class _$EmployeeModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class _EmployeeModel implements EmployeeModel {
-  const _EmployeeModel(
+class _$EmployeeModelImpl implements _EmployeeModel {
+  const _$EmployeeModelImpl(
       {this.id = 0,
       this.recruiterId = 0,
       this.shopId = 0,
@@ -318,8 +407,9 @@ class _EmployeeModel implements EmployeeModel {
       this.punchInPercentage = '',
       @JsonKey(fromJson: AppUtils.anyToDuration) this.inTime,
       @JsonKey(fromJson: AppUtils.anyToDuration) this.outTime});
-  factory _EmployeeModel.fromJson(Map<String, dynamic> json) =>
-      _$EmployeeModelFromJson(json);
+
+  factory _$EmployeeModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$EmployeeModelImplFromJson(json);
 
   @override
   @JsonKey()
@@ -388,26 +478,16 @@ class _EmployeeModel implements EmployeeModel {
   @JsonKey(fromJson: AppUtils.anyToDuration)
   final Duration? outTime;
 
-  /// Create a copy of EmployeeModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$EmployeeModelCopyWith<_EmployeeModel> get copyWith =>
-      __$EmployeeModelCopyWithImpl<_EmployeeModel>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$EmployeeModelToJson(
-      this,
-    );
+  String toString() {
+    return 'EmployeeModel(id: $id, recruiterId: $recruiterId, shopId: $shopId, employeeName: $employeeName, email: $email, phoneNumber: $phoneNumber, profileImage: $profileImage, salary: $salary, shiftTiming: $shiftTiming, shiftType: $shiftType, employmentType: $employmentType, designation: $designation, password: $password, createdAt: $createdAt, shopName: $shopName, shopContactNumber: $shopContactNumber, shopAddress: $shopAddress, description: $description, punchInDays: $punchInDays, punchInPercentage: $punchInPercentage, inTime: $inTime, outTime: $outTime)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _EmployeeModel &&
+            other is _$EmployeeModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.recruiterId, recruiterId) ||
                 other.recruiterId == recruiterId) &&
@@ -476,172 +556,103 @@ class _EmployeeModel implements EmployeeModel {
         outTime
       ]);
 
+  /// Create a copy of EmployeeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'EmployeeModel(id: $id, recruiterId: $recruiterId, shopId: $shopId, employeeName: $employeeName, email: $email, phoneNumber: $phoneNumber, profileImage: $profileImage, salary: $salary, shiftTiming: $shiftTiming, shiftType: $shiftType, employmentType: $employmentType, designation: $designation, password: $password, createdAt: $createdAt, shopName: $shopName, shopContactNumber: $shopContactNumber, shopAddress: $shopAddress, description: $description, punchInDays: $punchInDays, punchInPercentage: $punchInPercentage, inTime: $inTime, outTime: $outTime)';
+  @pragma('vm:prefer-inline')
+  _$$EmployeeModelImplCopyWith<_$EmployeeModelImpl> get copyWith =>
+      __$$EmployeeModelImplCopyWithImpl<_$EmployeeModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$EmployeeModelImplToJson(
+      this,
+    );
   }
 }
 
-/// @nodoc
-abstract mixin class _$EmployeeModelCopyWith<$Res>
-    implements $EmployeeModelCopyWith<$Res> {
-  factory _$EmployeeModelCopyWith(
-          _EmployeeModel value, $Res Function(_EmployeeModel) _then) =
-      __$EmployeeModelCopyWithImpl;
+abstract class _EmployeeModel implements EmployeeModel {
+  const factory _EmployeeModel(
+          {final int id,
+          final int recruiterId,
+          final int shopId,
+          final String employeeName,
+          final String email,
+          final String phoneNumber,
+          final String profileImage,
+          final String salary,
+          final String shiftTiming,
+          final String shiftType,
+          final String employmentType,
+          final String designation,
+          final String password,
+          @JsonKey(fromJson: AppUtils.anyToDateTime) final DateTime? createdAt,
+          final String shopName,
+          final String shopContactNumber,
+          final String shopAddress,
+          final String description,
+          final String punchInDays,
+          final String punchInPercentage,
+          @JsonKey(fromJson: AppUtils.anyToDuration) final Duration? inTime,
+          @JsonKey(fromJson: AppUtils.anyToDuration) final Duration? outTime}) =
+      _$EmployeeModelImpl;
+
+  factory _EmployeeModel.fromJson(Map<String, dynamic> json) =
+      _$EmployeeModelImpl.fromJson;
+
   @override
-  @useResult
-  $Res call(
-      {int id,
-      int recruiterId,
-      int shopId,
-      String employeeName,
-      String email,
-      String phoneNumber,
-      String profileImage,
-      String salary,
-      String shiftTiming,
-      String shiftType,
-      String employmentType,
-      String designation,
-      String password,
-      @JsonKey(fromJson: AppUtils.anyToDateTime) DateTime? createdAt,
-      String shopName,
-      String shopContactNumber,
-      String shopAddress,
-      String description,
-      String punchInDays,
-      String punchInPercentage,
-      @JsonKey(fromJson: AppUtils.anyToDuration) Duration? inTime,
-      @JsonKey(fromJson: AppUtils.anyToDuration) Duration? outTime});
-}
-
-/// @nodoc
-class __$EmployeeModelCopyWithImpl<$Res>
-    implements _$EmployeeModelCopyWith<$Res> {
-  __$EmployeeModelCopyWithImpl(this._self, this._then);
-
-  final _EmployeeModel _self;
-  final $Res Function(_EmployeeModel) _then;
+  int get id;
+  @override
+  int get recruiterId;
+  @override
+  int get shopId;
+  @override
+  String get employeeName;
+  @override
+  String get email;
+  @override
+  String get phoneNumber;
+  @override
+  String get profileImage;
+  @override
+  String get salary;
+  @override
+  String get shiftTiming;
+  @override
+  String get shiftType;
+  @override
+  String get employmentType;
+  @override
+  String get designation;
+  @override
+  String get password;
+  @override
+  @JsonKey(fromJson: AppUtils.anyToDateTime)
+  DateTime? get createdAt;
+  @override
+  String get shopName;
+  @override
+  String get shopContactNumber;
+  @override
+  String get shopAddress;
+  @override
+  String get description;
+  @override
+  String get punchInDays;
+  @override
+  String get punchInPercentage;
+  @override
+  @JsonKey(fromJson: AppUtils.anyToDuration)
+  Duration? get inTime;
+  @override
+  @JsonKey(fromJson: AppUtils.anyToDuration)
+  Duration? get outTime;
 
   /// Create a copy of EmployeeModel
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? id = null,
-    Object? recruiterId = null,
-    Object? shopId = null,
-    Object? employeeName = null,
-    Object? email = null,
-    Object? phoneNumber = null,
-    Object? profileImage = null,
-    Object? salary = null,
-    Object? shiftTiming = null,
-    Object? shiftType = null,
-    Object? employmentType = null,
-    Object? designation = null,
-    Object? password = null,
-    Object? createdAt = freezed,
-    Object? shopName = null,
-    Object? shopContactNumber = null,
-    Object? shopAddress = null,
-    Object? description = null,
-    Object? punchInDays = null,
-    Object? punchInPercentage = null,
-    Object? inTime = freezed,
-    Object? outTime = freezed,
-  }) {
-    return _then(_EmployeeModel(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      recruiterId: null == recruiterId
-          ? _self.recruiterId
-          : recruiterId // ignore: cast_nullable_to_non_nullable
-              as int,
-      shopId: null == shopId
-          ? _self.shopId
-          : shopId // ignore: cast_nullable_to_non_nullable
-              as int,
-      employeeName: null == employeeName
-          ? _self.employeeName
-          : employeeName // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
-          ? _self.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      phoneNumber: null == phoneNumber
-          ? _self.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      profileImage: null == profileImage
-          ? _self.profileImage
-          : profileImage // ignore: cast_nullable_to_non_nullable
-              as String,
-      salary: null == salary
-          ? _self.salary
-          : salary // ignore: cast_nullable_to_non_nullable
-              as String,
-      shiftTiming: null == shiftTiming
-          ? _self.shiftTiming
-          : shiftTiming // ignore: cast_nullable_to_non_nullable
-              as String,
-      shiftType: null == shiftType
-          ? _self.shiftType
-          : shiftType // ignore: cast_nullable_to_non_nullable
-              as String,
-      employmentType: null == employmentType
-          ? _self.employmentType
-          : employmentType // ignore: cast_nullable_to_non_nullable
-              as String,
-      designation: null == designation
-          ? _self.designation
-          : designation // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _self.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: freezed == createdAt
-          ? _self.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      shopName: null == shopName
-          ? _self.shopName
-          : shopName // ignore: cast_nullable_to_non_nullable
-              as String,
-      shopContactNumber: null == shopContactNumber
-          ? _self.shopContactNumber
-          : shopContactNumber // ignore: cast_nullable_to_non_nullable
-              as String,
-      shopAddress: null == shopAddress
-          ? _self.shopAddress
-          : shopAddress // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _self.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      punchInDays: null == punchInDays
-          ? _self.punchInDays
-          : punchInDays // ignore: cast_nullable_to_non_nullable
-              as String,
-      punchInPercentage: null == punchInPercentage
-          ? _self.punchInPercentage
-          : punchInPercentage // ignore: cast_nullable_to_non_nullable
-              as String,
-      inTime: freezed == inTime
-          ? _self.inTime
-          : inTime // ignore: cast_nullable_to_non_nullable
-              as Duration?,
-      outTime: freezed == outTime
-          ? _self.outTime
-          : outTime // ignore: cast_nullable_to_non_nullable
-              as Duration?,
-    ));
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$EmployeeModelImplCopyWith<_$EmployeeModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
-
-// dart format on

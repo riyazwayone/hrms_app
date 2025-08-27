@@ -1,12 +1,16 @@
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:hrms_app/app/data/services/user_service.dart';
+import 'package:hrms_app/app/modules/shop/shop_list/shop_list_controller.dart';
 import 'package:hrms_app/app/routes/app_routes.dart';
 import 'package:hrms_app/service_locator.dart';
 import 'package:logger/logger.dart';
 
+import '../../data/models/users/user_model.dart';
+
 class ProfileController extends GetxController {
   static ProfileController get to => Get.find();
-
+  final userModel = Rx<UserModel?>(null);
   // Observable variables
   final RxBool isLoading = false.obs;
   final RxString userName = 'John Doe'.obs;
@@ -27,8 +31,7 @@ class ProfileController extends GetxController {
       isLoading.value = true;
 
       // Simulate API call
-      await Future.delayed(const Duration(seconds: 1));
-
+      userModel.value = await sl<UserService>().getCurrentUser();
       // Load user data from storage or API
       // Implementation here
     } catch (e) {
@@ -39,6 +42,18 @@ class ProfileController extends GetxController {
       );
     } finally {
       isLoading.value = false;
+    }
+  }
+
+  void createShop() {
+    final planModel = userModel.value?.plan;
+    final shopListController = Get.find<ShopListController>();
+    final count = shopListController.shops.length;
+    if (count < planModel!.shopNumber) {
+      Get.toNamed(AppRoutes.createShop);
+    } else {
+      Fluttertoast.showToast(
+          msg: 'You have reached the maximum number of shops for your plan.');
     }
   }
 

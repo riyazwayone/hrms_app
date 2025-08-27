@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hrms_app/app/data/models/users/user_model.dart';
 import 'package:hrms_app/app/data/repositories/__task.dart';
+import 'package:hrms_app/app/data/services/chat_socket_service.dart';
 import 'package:hrms_app/app/data/services/user_service.dart';
 
 import 'app/data/repositories/__attendance.dart';
@@ -34,4 +35,11 @@ Future<void> initServices() async {
   sl.registerLazySingleton<ShopRepository>(() => ShopRepository());
   sl.registerLazySingleton<EmployeeRepository>(() => EmployeeRepository());
   sl.registerLazySingleton<TaskRepository>(() => TaskRepository());
+
+  // Register ChatSocketService as a lazily initialized singleton
+  final chatSocketService = ChatSocketService();
+  sl.registerLazySingleton<ChatSocketService>(() => chatSocketService);
+
+  // Initialize the chat socket service
+  await chatSocketService.init();
 }

@@ -6,8 +6,9 @@ part of 'attendance_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_AttendanceModel _$AttendanceModelFromJson(Map<String, dynamic> json) =>
-    _AttendanceModel(
+_$AttendanceModelImpl _$$AttendanceModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$AttendanceModelImpl(
       attendanceDate: AppUtils.anyToDateTime(json['attendance_date']),
       inTime: AppUtils.anyToDuration(json['in_time']),
       outTime: AppUtils.anyToDuration(json['out_time']),
@@ -21,7 +22,8 @@ _AttendanceModel _$AttendanceModelFromJson(Map<String, dynamic> json) =>
       location: json['location'] as String?,
     );
 
-Map<String, dynamic> _$AttendanceModelToJson(_AttendanceModel instance) =>
+Map<String, dynamic> _$$AttendanceModelImplToJson(
+        _$AttendanceModelImpl instance) =>
     <String, dynamic>{
       'attendance_date': instance.attendanceDate?.toIso8601String(),
       'in_time': instance.inTime?.inMicroseconds,

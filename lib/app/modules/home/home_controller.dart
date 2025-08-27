@@ -8,13 +8,13 @@ import 'package:hrms_app/app/data/models/users/user_model.dart';
 import 'package:hrms_app/app/data/repositories/__employee.dart';
 import 'package:hrms_app/app/data/repositories/__home.dart';
 import 'package:hrms_app/app/data/services/user_service.dart';
-import 'package:hrms_app/app/modules/attendance/attendance_controller.dart';
 import 'package:hrms_app/app/modules/employee/all_employees/all_employees_controller.dart';
 import 'package:hrms_app/app/routes/app_routes.dart';
 import 'package:hrms_app/service_locator.dart';
 import 'package:logger/logger.dart';
 
 import '../../data/models/home/home_model.dart';
+import '../attendance/attendance_controller.dart';
 
 class HomeController extends GetxController {
   static HomeController get to => Get.find();

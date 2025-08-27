@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hrms_app/app/core/theme/app_colors.dart';
+import 'package:hrms_app/app/core/theme/app_gaps.dart';
 import 'package:hrms_app/service_locator.dart';
 
 import '../../../core/constants/app_constants.dart';
@@ -77,7 +79,7 @@ class AdminHomeView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Amelia Cruze',
+                    controller.user.value?.name ?? "",
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -85,7 +87,7 @@ class AdminHomeView extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'HR',
+                    controller.user.value?.role.name.toUpperCase() ?? "",
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.black54,
@@ -95,27 +97,42 @@ class AdminHomeView extends StatelessWidget {
               ),
             ],
           ),
-          Stack(
+          Row(
             children: [
-              Icon(
-                Icons.notifications_outlined,
-                size: 30,
-                color: Colors.black54,
-              ),
-              Positioned(
-                top: 0,
-                right: 0,
-                child: Container(
-                  width: 10,
-                  height: 10,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.red,
+              Stack(
+                children: [
+                  Icon(
+                    Icons.notifications_outlined,
+                    size: 30,
+                    color: Colors.black54,
                   ),
-                ),
+                  Positioned(
+                    top: 0,
+                    right: 0,
+                    child: Container(
+                      width: 10,
+                      height: 10,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.red,
+                      ),
+                    ),
+                  ),
+                ],
               ),
+              // Gap(AppGaps.small),
+              // IconButton(
+              //   onPressed: () {
+              //     Get.toNamed(AppRoutes.chatHome);
+              //   },
+              //   icon: Icon(
+              //     Icons.message_outlined,
+              //     size: 30,
+              //   ),
+              //   color: Colors.black54,
+              // ),
             ],
-          ),
+          )
         ],
       ),
     );

@@ -6,7 +6,8 @@ part of 'shop_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_ShopModel _$ShopModelFromJson(Map<String, dynamic> json) => _ShopModel(
+_$ShopModelImpl _$$ShopModelImplFromJson(Map<String, dynamic> json) =>
+    _$ShopModelImpl(
       id: (json['id'] as num?)?.toInt(),
       shopName: json['shop_name'] as String?,
       shopContactNumber: json['shop_contact_number'] as String?,
@@ -19,7 +20,7 @@ _ShopModel _$ShopModelFromJson(Map<String, dynamic> json) => _ShopModel(
           : DateTime.parse(json['created_at'] as String),
     );
 
-Map<String, dynamic> _$ShopModelToJson(_ShopModel instance) =>
+Map<String, dynamic> _$$ShopModelImplToJson(_$ShopModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'shop_name': instance.shopName,

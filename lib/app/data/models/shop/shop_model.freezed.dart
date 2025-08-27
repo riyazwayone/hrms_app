@@ -1,4 +1,3 @@
-// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,66 +9,40 @@ part of 'shop_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+
+ShopModel _$ShopModelFromJson(Map<String, dynamic> json) {
+  return _ShopModel.fromJson(json);
+}
 
 /// @nodoc
 mixin _$ShopModel {
-  int? get id;
-  String? get shopName;
-  String? get shopContactNumber;
-  String? get shopAddress;
-  String? get email;
-  String get description;
-  int? get employeeCount;
-  DateTime? get createdAt;
+  int? get id => throw _privateConstructorUsedError;
+  String? get shopName => throw _privateConstructorUsedError;
+  String? get shopContactNumber => throw _privateConstructorUsedError;
+  String? get shopAddress => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  int? get employeeCount => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+
+  /// Serializes this ShopModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of ShopModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
   $ShopModelCopyWith<ShopModel> get copyWith =>
-      _$ShopModelCopyWithImpl<ShopModel>(this as ShopModel, _$identity);
-
-  /// Serializes this ShopModel to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is ShopModel &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.shopName, shopName) ||
-                other.shopName == shopName) &&
-            (identical(other.shopContactNumber, shopContactNumber) ||
-                other.shopContactNumber == shopContactNumber) &&
-            (identical(other.shopAddress, shopAddress) ||
-                other.shopAddress == shopAddress) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.employeeCount, employeeCount) ||
-                other.employeeCount == employeeCount) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, id, shopName, shopContactNumber,
-      shopAddress, email, description, employeeCount, createdAt);
-
-  @override
-  String toString() {
-    return 'ShopModel(id: $id, shopName: $shopName, shopContactNumber: $shopContactNumber, shopAddress: $shopAddress, email: $email, description: $description, employeeCount: $employeeCount, createdAt: $createdAt)';
-  }
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $ShopModelCopyWith<$Res> {
-  factory $ShopModelCopyWith(ShopModel value, $Res Function(ShopModel) _then) =
-      _$ShopModelCopyWithImpl;
+abstract class $ShopModelCopyWith<$Res> {
+  factory $ShopModelCopyWith(ShopModel value, $Res Function(ShopModel) then) =
+      _$ShopModelCopyWithImpl<$Res, ShopModel>;
   @useResult
   $Res call(
       {int? id,
@@ -83,11 +56,14 @@ abstract mixin class $ShopModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ShopModelCopyWithImpl<$Res> implements $ShopModelCopyWith<$Res> {
-  _$ShopModelCopyWithImpl(this._self, this._then);
+class _$ShopModelCopyWithImpl<$Res, $Val extends ShopModel>
+    implements $ShopModelCopyWith<$Res> {
+  _$ShopModelCopyWithImpl(this._value, this._then);
 
-  final ShopModel _self;
-  final $Res Function(ShopModel) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of ShopModel
   /// with the given fields replaced by the non-null parameter values.
@@ -103,37 +79,115 @@ class _$ShopModelCopyWithImpl<$Res> implements $ShopModelCopyWith<$Res> {
     Object? employeeCount = freezed,
     Object? createdAt = freezed,
   }) {
-    return _then(_self.copyWith(
+    return _then(_value.copyWith(
       id: freezed == id
-          ? _self.id
+          ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
       shopName: freezed == shopName
-          ? _self.shopName
+          ? _value.shopName
           : shopName // ignore: cast_nullable_to_non_nullable
               as String?,
       shopContactNumber: freezed == shopContactNumber
-          ? _self.shopContactNumber
+          ? _value.shopContactNumber
           : shopContactNumber // ignore: cast_nullable_to_non_nullable
               as String?,
       shopAddress: freezed == shopAddress
-          ? _self.shopAddress
+          ? _value.shopAddress
           : shopAddress // ignore: cast_nullable_to_non_nullable
               as String?,
       email: freezed == email
-          ? _self.email
+          ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
       description: null == description
-          ? _self.description
+          ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
       employeeCount: freezed == employeeCount
-          ? _self.employeeCount
+          ? _value.employeeCount
           : employeeCount // ignore: cast_nullable_to_non_nullable
               as int?,
       createdAt: freezed == createdAt
-          ? _self.createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ShopModelImplCopyWith<$Res>
+    implements $ShopModelCopyWith<$Res> {
+  factory _$$ShopModelImplCopyWith(
+          _$ShopModelImpl value, $Res Function(_$ShopModelImpl) then) =
+      __$$ShopModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int? id,
+      String? shopName,
+      String? shopContactNumber,
+      String? shopAddress,
+      String? email,
+      String description,
+      int? employeeCount,
+      DateTime? createdAt});
+}
+
+/// @nodoc
+class __$$ShopModelImplCopyWithImpl<$Res>
+    extends _$ShopModelCopyWithImpl<$Res, _$ShopModelImpl>
+    implements _$$ShopModelImplCopyWith<$Res> {
+  __$$ShopModelImplCopyWithImpl(
+      _$ShopModelImpl _value, $Res Function(_$ShopModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ShopModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? shopName = freezed,
+    Object? shopContactNumber = freezed,
+    Object? shopAddress = freezed,
+    Object? email = freezed,
+    Object? description = null,
+    Object? employeeCount = freezed,
+    Object? createdAt = freezed,
+  }) {
+    return _then(_$ShopModelImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      shopName: freezed == shopName
+          ? _value.shopName
+          : shopName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      shopContactNumber: freezed == shopContactNumber
+          ? _value.shopContactNumber
+          : shopContactNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      shopAddress: freezed == shopAddress
+          ? _value.shopAddress
+          : shopAddress // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      employeeCount: freezed == employeeCount
+          ? _value.employeeCount
+          : employeeCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ));
@@ -143,8 +197,8 @@ class _$ShopModelCopyWithImpl<$Res> implements $ShopModelCopyWith<$Res> {
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class _ShopModel implements ShopModel {
-  const _ShopModel(
+class _$ShopModelImpl implements _ShopModel {
+  const _$ShopModelImpl(
       {this.id,
       this.shopName,
       this.shopContactNumber,
@@ -153,8 +207,9 @@ class _ShopModel implements ShopModel {
       this.description = "",
       this.employeeCount = 0,
       this.createdAt});
-  factory _ShopModel.fromJson(Map<String, dynamic> json) =>
-      _$ShopModelFromJson(json);
+
+  factory _$ShopModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ShopModelImplFromJson(json);
 
   @override
   final int? id;
@@ -175,26 +230,16 @@ class _ShopModel implements ShopModel {
   @override
   final DateTime? createdAt;
 
-  /// Create a copy of ShopModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$ShopModelCopyWith<_ShopModel> get copyWith =>
-      __$ShopModelCopyWithImpl<_ShopModel>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$ShopModelToJson(
-      this,
-    );
+  String toString() {
+    return 'ShopModel(id: $id, shopName: $shopName, shopContactNumber: $shopContactNumber, shopAddress: $shopAddress, email: $email, description: $description, employeeCount: $employeeCount, createdAt: $createdAt)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ShopModel &&
+            other is _$ShopModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.shopName, shopName) ||
                 other.shopName == shopName) &&
@@ -216,87 +261,57 @@ class _ShopModel implements ShopModel {
   int get hashCode => Object.hash(runtimeType, id, shopName, shopContactNumber,
       shopAddress, email, description, employeeCount, createdAt);
 
+  /// Create a copy of ShopModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'ShopModel(id: $id, shopName: $shopName, shopContactNumber: $shopContactNumber, shopAddress: $shopAddress, email: $email, description: $description, employeeCount: $employeeCount, createdAt: $createdAt)';
+  @pragma('vm:prefer-inline')
+  _$$ShopModelImplCopyWith<_$ShopModelImpl> get copyWith =>
+      __$$ShopModelImplCopyWithImpl<_$ShopModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ShopModelImplToJson(
+      this,
+    );
   }
 }
 
-/// @nodoc
-abstract mixin class _$ShopModelCopyWith<$Res>
-    implements $ShopModelCopyWith<$Res> {
-  factory _$ShopModelCopyWith(
-          _ShopModel value, $Res Function(_ShopModel) _then) =
-      __$ShopModelCopyWithImpl;
+abstract class _ShopModel implements ShopModel {
+  const factory _ShopModel(
+      {final int? id,
+      final String? shopName,
+      final String? shopContactNumber,
+      final String? shopAddress,
+      final String? email,
+      final String description,
+      final int? employeeCount,
+      final DateTime? createdAt}) = _$ShopModelImpl;
+
+  factory _ShopModel.fromJson(Map<String, dynamic> json) =
+      _$ShopModelImpl.fromJson;
+
   @override
-  @useResult
-  $Res call(
-      {int? id,
-      String? shopName,
-      String? shopContactNumber,
-      String? shopAddress,
-      String? email,
-      String description,
-      int? employeeCount,
-      DateTime? createdAt});
-}
-
-/// @nodoc
-class __$ShopModelCopyWithImpl<$Res> implements _$ShopModelCopyWith<$Res> {
-  __$ShopModelCopyWithImpl(this._self, this._then);
-
-  final _ShopModel _self;
-  final $Res Function(_ShopModel) _then;
+  int? get id;
+  @override
+  String? get shopName;
+  @override
+  String? get shopContactNumber;
+  @override
+  String? get shopAddress;
+  @override
+  String? get email;
+  @override
+  String get description;
+  @override
+  int? get employeeCount;
+  @override
+  DateTime? get createdAt;
 
   /// Create a copy of ShopModel
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? id = freezed,
-    Object? shopName = freezed,
-    Object? shopContactNumber = freezed,
-    Object? shopAddress = freezed,
-    Object? email = freezed,
-    Object? description = null,
-    Object? employeeCount = freezed,
-    Object? createdAt = freezed,
-  }) {
-    return _then(_ShopModel(
-      id: freezed == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      shopName: freezed == shopName
-          ? _self.shopName
-          : shopName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      shopContactNumber: freezed == shopContactNumber
-          ? _self.shopContactNumber
-          : shopContactNumber // ignore: cast_nullable_to_non_nullable
-              as String?,
-      shopAddress: freezed == shopAddress
-          ? _self.shopAddress
-          : shopAddress // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: freezed == email
-          ? _self.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: null == description
-          ? _self.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      employeeCount: freezed == employeeCount
-          ? _self.employeeCount
-          : employeeCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      createdAt: freezed == createdAt
-          ? _self.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-    ));
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ShopModelImplCopyWith<_$ShopModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
-
-// dart format on

@@ -200,9 +200,12 @@ class CreateEmployeeController extends GetxController {
       );
       return;
     }
-
-    selectedShop.value ??= shopListController!.shops.first;
-    selectedHr.value ??= getHrList().isNotEmpty ? getHrList().first : null;
+    final user = sl<UserService>().getCurrentUserSync();
+    _logger.f(shopListController?.shops);
+    selectedShop.value = shopListController!.shops.isNotEmpty
+        ? shopListController!.shops.first
+        : null;
+    selectedHr.value = getHrList().isNotEmpty ? getHrList().first : null;
     try {
       isLoading.value = true;
 
@@ -219,7 +222,6 @@ class CreateEmployeeController extends GetxController {
         password: passwordController.text,
         profileImage: imagePath.value, // Add profile image path
       );
-      final user = sl<UserService>().getCurrentUserSync();
       if (user!.role == UserRole.hr) {
         employee = employee.copyWith(recruiterId: user.id, shopId: user.shopId);
       }
@@ -255,7 +257,7 @@ class CreateEmployeeController extends GetxController {
 
       // Navigate back
 
-      // Get.back(canPop: true, closeOverlays: false, result: true);
+      Get.back(canPop: true, closeOverlays: false, result: true);
     } catch (e, stack) {
       _logger.e('Error creating employee: $e');
       _logger.e('Stack trace: $stack');

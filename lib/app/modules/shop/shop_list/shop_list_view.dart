@@ -20,10 +20,7 @@ class ShopListView extends GetView<ShopListController> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
-          onPressed: () => Get.back(),
-        ),
+        leading: null,
         title: Text(
           'Shop List',
           style: AppTextStyles.h4.copyWith(color: AppColors.textPrimary),

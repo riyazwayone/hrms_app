@@ -32,7 +32,7 @@ class EmployeeItem extends StatelessWidget {
           errorWidget: (context, url, error) => const CircleAvatar(
             radius: 40,
             backgroundImage:
-                AssetImage('assets/images/profile_placeholder.png'),
+                AssetImage('assets/images/profile_placeholder.webp'),
             child: Icon(Icons.person, size: 40, color: Colors.grey),
           ),
           errorListener: (value) {
